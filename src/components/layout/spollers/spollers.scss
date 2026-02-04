@@ -1,0 +1,170 @@
+// Базові стилі спойлерів
+// Сніппет (HTML): spoller
+
+// Блок зі спойлерами
+.spollers {
+	display: grid;
+	gap: 15px;
+
+	counter-reset: item;
+}
+
+// Спойлер
+.spollers__item {
+	background: #e5e5e5;
+	border-radius: 8px;
+	padding: 20px 14px;
+
+	counter-increment: item;
+
+}
+
+// Заголовок спойлера
+.spollers__title {
+	width: 100%;
+	cursor: default;
+	text-align: left;
+	// border: 1px solid #eee;
+	// padding: 10px 15px;
+	border-radius: 5px;
+	position: relative;
+	list-style: none;
+
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	align-items: center;
+
+	&::marker,
+	&::-webkit-details-marker {
+		display: none;
+	}
+
+
+
+	.--spoller-init & {
+		cursor: pointer;
+
+		&::before {
+			font-size: 12px;
+			transition: all 0.3s;
+
+			// position: absolute;
+			// top: 15px;
+			// right: 15px;
+			// transform: translate(-50%, -50%);
+
+			vertical-align: middle;
+		}
+
+		// &::before,
+		// &::after {
+		// 	content: "";
+		// 	position: absolute;
+		// 	right: 10px;
+		// 	top: 50%;
+		// 	background-color: #000;
+		// 	height: 2px;
+		// 	width: 15px;
+		// 	transition: transform 0.5s ease 0s;
+		// }
+
+		// &::before {
+		// 	transform: translate(-75%, -50%) rotate(40deg);
+		// }
+
+		// &::after {
+		// 	transform: translate(0, -50%) rotate(-40deg);
+		// }
+
+		&.--spoller-active {
+			&::before {
+				transform: rotate(180deg);
+
+			}
+
+			// &::after {
+			// 	transform: rotate(40deg);
+			// }
+		}
+	}
+}
+
+.spollers__title-text {
+	font-weight: 800;
+	font-size: 16px;
+	letter-spacing: 0.05em;
+	text-transform: capitalize;
+	color: #22242d;
+
+	display: inline-flex;
+	gap: 13px;
+
+	@media (min-width:toEm($tab)) {
+		font-size: 18px;
+	}
+
+	&::before {
+		content: counter(item, decimal-leading-zero);
+		font-weight: 400;
+		font-size: 18px;
+		letter-spacing: 0.05em;
+		text-transform: capitalize;
+		color: #7d7d7d;
+		padding-right: 11px;
+		border-right: 1px solid #e3b66d;
+	}
+}
+
+// Контент спойлера
+.spollers__body {
+	padding: 24px 11px 0;
+	font-family: var(--second-family);
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 193%;
+	// color: #22242d;
+
+	@media (min-width:toEm($tab)) {
+		padding: 20px 74px 30px 47px;
+	}
+
+	a {
+		text-decoration: underline;
+text-decoration-skip-ink: none;
+color: #b37b2c;
+	}
+
+}
+
+// .--spoller-init & {
+// 	position: relative;
+// 	width: 100%;
+// 	text-align: left;
+// 	&::before,
+// 	&::after {
+// 		content: "";
+// 		position: absolute;
+// 		right: 0;
+// 		top: toRem(12);
+// 		height: toRem(1);
+// 		transition: all 0.3s ease 0s;
+// 		width: toRem(10);
+// 		background-color: #000;
+// 	}
+// 	&::before {
+// 		transform: rotate(40deg);
+// 		right: toRem(7);
+// 	}
+// 	&::after {
+// 		transform: rotate(-40deg);
+// 	}
+// }
+// &.--spoller-active {
+// 	&::before {
+// 		transform: rotate(-40deg);
+// 	}
+// 	&::after {
+// 		transform: rotate(40deg);
+// 	}
+// }

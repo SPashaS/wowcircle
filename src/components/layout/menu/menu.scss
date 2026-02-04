@@ -1,0 +1,173 @@
+.menu {
+	// position: relative;
+
+	&::before {
+		@media (max-width:toEm($mob)) {
+			content: '';
+			width: 99px;
+			height: 99px;
+			border-radius: 172px;
+			background: rgba(227, 182, 109, 0.8);
+			backdrop-filter: blur(15px);
+			position: absolute;
+			right: 0;
+			top: 0;
+			transform: translate(15%, -17%);
+			transition: all 0.3s ease 0s;
+
+			[data-fls-menu-open] & {
+				// width: 100%;
+				// height: 100%;
+				// position: absolute;
+				// transform: translate(0, 0);
+				// border-radius: 0;
+				opacity: 0;
+			}
+		}
+
+	}
+
+	// .menu__icon
+	&__icon {}
+
+	// .menu__body
+	&__body {
+
+		@media (max-width:toEm($mob)) {
+			z-index: 99;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			left: 100%;
+			top: 0;
+			overflow: auto;
+			// padding: 50px 15px 30px 15px;
+			opacity: 0;
+			transition: all 0.3s;
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 0;
+				height: 0;
+				background: rgba(227, 182, 109, 0.8);
+				backdrop-filter: blur(15px);
+				transition: all 0.3s;
+				border-radius: 70px;
+				z-index: -1;
+			}
+
+			[data-fls-menu-open] & {
+				opacity: 1;
+				left: 0;
+
+				&::before {
+					border-radius: 0;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
+
+	// .menu__list
+	&__list {
+		@media (max-width:toEm($mob)) {
+			padding: 150px 60px;
+			position: relative;
+			z-index: 10;
+		}
+
+		@media (min-width:toEm($mob)) {
+			display: flex;
+			gap: 14px;
+		}
+	}
+
+	// .menu-item
+	&-item {
+		@media (max-width:toEm($mob)) {
+			font-size: 30px;
+
+			&:not(:last-child) {
+				margin-bottom: 47px;
+			}
+		}
+
+		text-align: center;
+		color: #1d1f28;
+
+		a {
+			padding: 13px;
+
+			@media (min-width:toEm($tab)){
+				padding: 13px 25px;
+			}
+		}
+
+	}
+
+}
+
+//Burger Icon
+.icon-menu {
+	display: none;
+
+	@media (max-width:toEm($mob)) {
+
+		display: block;
+		position: relative;
+		width: toRem(30);
+		height: toRem(18);
+		z-index: 100;
+
+		@media (any-hover: none) {
+			cursor: default;
+		}
+
+		span,
+		&::before,
+		&::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: #000;
+		}
+
+		&::before {
+			top: 0;
+		}
+
+		&::after {
+			bottom: 0;
+		}
+
+		span {
+			top: calc(50% - 1px);
+		}
+
+		[data-fls-menu-open] & {
+			span {
+				width: 0;
+			}
+
+			// &::before,
+			// &::after {}
+
+			&::before {
+				top: calc(50% - 1px);
+				transform: rotate(-45deg);
+			}
+
+			&::after {
+				bottom: calc(50% - 1px);
+				transform: rotate(45deg);
+			}
+		}
+	}
+}

@@ -1,0 +1,29 @@
+[data-fls-header-scroll] {
+	// position: fixed;
+	position: sticky;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 50;
+
+	&.--header-scroll {
+		background: #faf5f5;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	}
+}
+
+[data-fls-header-scroll-show] {
+	&.--header-scroll {
+		transition: all 0.3s;
+		top: -100%;
+		// transform: translate(0px, -100%);
+
+
+
+	}
+
+	&.--header-show {
+		// transform: translate(0, 0);
+		top: 0;
+	}
+}

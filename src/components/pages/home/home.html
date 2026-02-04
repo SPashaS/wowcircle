@@ -1,0 +1,493 @@
+<script type="module" src="@components/pages/home/home.js"></script>
+<link rel="stylesheet" href="@components/pages/home/home.scss">
+
+<main class="page">
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="hero__scene" aria-hidden="true">
+      <!-- <model-viewer class="hero__model hero__model--ysera"
+        src="/assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay animation-name="Idle"
+        environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom
+        disable-pan disable-tap camera-orbit="35deg 75deg 2.8m" camera-target="0m 1.15m 0m"
+        style="width:100%; height:520px; background: transparent;"></model-viewer> -->
+
+      <model-viewer id="yseraModel" class="hero__model"
+        src="/assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay
+        animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="2" shadow-intensity="0.6"
+        interaction-prompt="none" disable-zoom disable-pan disable-tap camera-orbit="-246deg 112deg 1.5m"
+        camera-target="2m 1.15m 1m">
+      </model-viewer>
+    </div>
+
+    <div class="hero__content">
+      <h1 class="hero__title">ВАША БЕСКОНЕЧНАЯ ВСЕЛЕННАЯ</h1>
+
+      <p class="hero__subtitle">
+        Открытие WoW Circle Dragonflight x10 — <strong>дата:</strong> ХХ.ХХ.ХХ, <strong>время:</strong> ХХ:ХХ (МСК)
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#features">ПОДРОБНЕЕ</a>
+        <a class="btn btn--secondary" href="#register">РЕГИСТРАЦИЯ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="features__bg" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="features__slider swiper" data-fls-slider>
+
+        <div class="features__viewport swiper-wrapper">
+          <div class="features__slide swiper-slide">
+            <article class="features__card">
+              <h3 class="features__title">Рейты</h3>
+              <p class="features__text">Настраивайте темп игры: множитель 
+                $xN$ на опыт ускоряет прокачку, 
+                а $xN$ на остальные параметры 
+                (добыча, дроп, награды) подстраивает 
+                щедрость мира под ваш стиль 
+                от размеренного исследования 
+                до динамичного прогресса.</p>
+            </article>
+          </div>
+          <div class="features__slide swiper-slide">
+            <article class="features__card">
+              <h3 class="features__title">Открытие</h3>
+              <p class="features__text">Контент раскрывается постепенно, 
+                начиная с версии 10.0. 
+                Это даёт чёткую траекторию развития: 
+                от базовых механик - к сложным вызовам и эксклюзивным 
+                наградам. Всегда есть к чему стремиться.</p>
+            </article>
+          </div>
+          <div class="features__slide swiper-slide">
+            <article class="features__card">
+              <h3 class="features__title">Команда</h3>
+              <p class="features__text">Большая команда разработчиков 
+                обеспечивает регулярные обновления, 
+                оперативное исправление ошибок 
+                и учёт обратной связи. 
+                Игра живёт и развивается 
+                благодаря вниманию к сообществу.</p>
+            </article>
+          </div>
+          <div class="features__slide swiper-slide">
+            <article class="features__card">
+              <h3 class="features__title">Стабильность</h3>
+              <p class="features__text">Сервер работает стабильно: низкий пинг 
+                гарантирует отзывчивое управление, 
+                а оптимизация под разные устройства — плавную игру даже в пиковые часы.</p>
+            </article>
+          </div>
+          <div class="features__slide swiper-slide">
+            <article class="features__card">
+              <h3 class="features__title">Модификации</h3>
+              <p class="features__text">Удобные дополнения улучшают геймплей: интерактивное меню .menu упрощает 
+                навигацию, режимы спектратора позволяют 
+                учиться на чужих боях, 
+                а команда .xp rate даёт возможность 
+                на лету менять множители опыта.</p>
+            </article>
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+    <div class="features__decor" aria-hidden="true">
+      <span class="features__decor-line features__decor-line--left"></span>
+      <span class="features__decor-line features__decor-line--right"></span>
+
+      <span class="features__decor-orb features__decor-orb--left"></span>
+      <span class="features__decor-orb features__decor-orb--center"></span>
+      <span class="features__decor-orb features__decor-orb--right"></span>
+    </div>
+
+  </section>
+
+  <section class="mods" id="mods">
+    <div class="mods__bg" aria-hidden="true"></div>
+
+    <div class="mods__container">
+      <div class="mods__content">
+        <h2 class="mods__title">МОДИФИКАЦИИ</h2>
+        <p class="mods__subtitle js-mods-subtitle"></p>
+        <p class="mods__desc js-mods-desc"></p>
+      </div>
+
+      <div class="mods__stage">
+        <div class="mods__orbit js-mods-orbit">
+
+          <div class="mods__portal js-mods-item" data-title="PVE-СПЕКТАТОР"
+            data-desc="Просмотр игр на аренах PVE в режиме LIVE." style="--img:url('@img/mods/1.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="МЕНЮ .MENU"
+            data-desc="Интерактивное меню управления сервером." style="--img:url('@img/mods/2.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="PVP СПЕКТАТОР"
+            data-desc="Наблюдай PVP-бои в реальном времени." style="--img:url('@img/mods/3.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="XP RATE" data-desc="Меняй множитель опыта на лету."
+            style="--img:url('@img/mods/4.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="UI МОДЫ" data-desc="Дополнительные улучшения интерфейса."
+            style="--img:url('@img/mods/5.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="КРОССФРАКЦИЯ"
+            data-desc="Удобная игра с друзьями вне зависимости от фракции." style="--img:url('@img/mods/6.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="АУКЦИОН"
+            data-desc="Улучшенный поиск и фильтры для торговли." style="--img:url('@img/mods/7.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="ТЕЛЕПОРТЫ"
+            data-desc="Быстрые перемещения по ключевым точкам мира." style="--img:url('@img/mods/8.jpg');">
+          </div>
+
+          <div class="mods__portal js-mods-item" data-title="КАСТОМ-КВЕСТЫ"
+            data-desc="Дополнительный контент и награды." style="--img:url('@img/mods/9.jpg');">
+          </div>
+
+        </div>
+      </div>
+      <div class="mods__nav">
+        <div class="mods__arrow mods__arrow--prev js-prev"></div>
+        <div class="mods__arrow mods__arrow--next js-next"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="stages" id="stages">
+    <!-- 2 фона секции: НЕ меняем, НЕ трогаем JS -->
+    <div class="stages__bg" aria-hidden="true"></div>
+    <div class="stages__bg2" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="stages__header">
+        <h2 class="stages__title">ЭТАПЫ ПОСТЕПЕННОГО ОТКРЫТИЯ КОНТЕНТА</h2>
+      </div>
+
+      <div class="stages__container js-stages">
+        <div class="stages__media" aria-hidden="true">
+          <div class="stages__img stages__img"></div>
+
+          <!-- место под PNG рамку большой картинки -->
+          <div class="stages__frame-main" aria-hidden="true"></div>
+
+          <div class="stages__caption">
+            <div class="stages__caption-text js-caption"></div>
+          </div>
+        </div>
+
+        <aside class="stages__side">
+          <div class="stages__steps js-steps"></div>
+        </aside>
+
+        <div class="stages__data js-data" hidden>
+          <div class="js-stage" data-text="«ДРАКОНИЙ ПОЛЁТ» (10.0) - СТАРТ СЕРВЕРА" data-img="@img/stages/1.jpg"></div>
+
+          <div class="js-stage" data-text="«УЛДИ НЕЛТАРИОНА» (10.1) - СКОРО!" data-img="@img/stages/2.jpg"></div>
+
+          <div class="js-stage" data-text="«СТРАЖИ СНА» (10.2) - СКОРО!" data-img="@img/stages/3.jpg"></div>
+
+          <div class="js-stage" data-text="«ТЁМНОЕ СЕРДЦЕ» (10.3) - СКОРО!" data-img="@img/stages/4.jpg"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section class="df" id="dragonflight">
+    <div class="df__bg" aria-hidden="true"></div>
+
+    <div class="df__container">
+      <header class="df__header">
+        <h2 class="df__title">ОСОБЕННОСТИ ДОПОЛНЕНИЯ DRAGONFLIGHT</h2>
+      </header>
+
+      <div class="df__frame">
+        <div class="df__slider swiper">
+          <div class="swiper-wrapper">
+
+            <article class="df-card swiper-slide">
+              <div class="df-card__body">
+                <div class="df-card__media">
+                  <img src="@img/df/1.jpg" alt="Новая раса — Драктиры" loading="lazy">
+                </div>
+                <h3 class="df-card__title">НОВАЯ РАСА<br>ДРАКТИРЫ</h3>
+              </div>
+              <a class="df-card__btn" href="#">
+                <span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+                <span class="df-card__lvl">70</span>
+              </a>
+            </article>
+
+            <article class="df-card swiper-slide">
+              <div class="df-card__body">
+                <div class="df-card__media">
+                  <img src="@img/df/2.jpg" alt="Новая локация — Драконий остров" loading="lazy">
+                </div>
+                <h3 class="df-card__title">НОВАЯ ЛОКАЦИЯ<br>ДРАКОНИЙ ОСТРОВ</h3>
+              </div>
+              <a class="df-card__btn" href="#">
+                <span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+                <span class="df-card__lvl">70</span>
+              </a>
+            </article>
+
+            <article class="df-card swiper-slide">
+              <div class="df-card__body">
+                <div class="df-card__media">
+                  <img src="@img/df/3.jpg" alt="Новый класс — Пробудитель" loading="lazy">
+                </div>
+                <h3 class="df-card__title">НОВЫЙ КЛАСС<br>ПРОБУДИТЕЛЬ</h3>
+              </div>
+              <a class="df-card__btn" href="#">
+                <span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+                <span class="df-card__lvl">70</span>
+              </a>
+            </article>
+
+            <article class="df-card swiper-slide">
+              <div class="df-card__body">
+                <div class="df-card__media">
+                  <img src="@img/df/4.jpg" alt="Повышение уровня до 70" loading="lazy">
+                </div>
+                <h3 class="df-card__title">ПОВЫШЕНИЕ УРОВНЯ<br>ДО 70</h3>
+              </div>
+              <a class="df-card__btn" href="#">
+                <span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+                <span class="df-card__lvl">70</span>
+              </a>
+            </article>
+
+            <article class="df-card swiper-slide">
+              <div class="df-card__body">
+                <div class="df-card__media">
+                  <img src="@img/df/5.jpg" alt="Новая система полёта — Dragonriding" loading="lazy">
+                </div>
+                <h3 class="df-card__title">НОВАЯ СИСТЕМА ПОЛЁТА<br>DRAGONRIDING</h3>
+              </div>
+              <a class="df-card__btn" href="#">
+                <span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+                <span class="df-card__lvl">70</span>
+              </a>
+            </article>
+
+            <article class="df-card swiper-slide">
+              <div class="df-card__body">
+                <div class="df-card__media">
+                  <img src="@img/df/6.jpg" alt="Новые рейды и подземелья" loading="lazy">
+                </div>
+                <h3 class="df-card__title">НОВЫЕ РЕЙДЫ<br>И ПОДЗЕМЕЛЬЯ</h3>
+              </div>
+              <a class="df-card__btn" href="#">
+                <span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+                <span class="df-card__lvl">70</span>
+              </a>
+            </article>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="raids" id="raids">
+    <div class="raids__bg" aria-hidden="true"></div>
+    <div class="raids__overlay" aria-hidden="true"></div>
+
+    <div class="container">
+      <header class="raids__header">
+        <h2 class="raids__title">ПРИМИ УЧАСТИЕ В РЕЙДАХ</h2>
+      </header>
+
+      <div class="raids__container js-raids">
+        <!-- LEFT: buttons -->
+        <aside class="raids__side">
+          <div class="raids__steps js-raids-steps"></div>
+
+          <!-- data source (можно держать как у тебя) -->
+          <div class="raids__data js-raids-data" hidden>
+
+
+            <div class="js-raid" data-name="Хранилище
+            Воплощений - 10.0"
+              data-desc="Много тысяч лет назад, после победы над первородными воплощениями, драконьи аспекты не смогли уничтожить их окончательно. 
+              Вместо этого они создали особое хранилище воплощений, где заключили самых опасных врагов под магическими печатями. 
+              Одним из этих существ была Рашагет - Воплощение бурь, олицетворяющее первозданную стихию, ненавидящую титанов и их «порядок»."
+              data-img="@img/raids/3.jpg">
+            </div>
+
+
+            <div class="js-raid" data-name=" Аберрус, Затенённый 
+              тигельТак  - патч 10.1"
+              data-desc="Аберрус - это тайный подземный комплекс, созданный Нелтарион в глубине Драконьих островов задолго до его окончательного падения и превращения 
+              в Смертокрыла.Изначально Нелтарион был хранителем земли и защитником Азерота. Однако, находясь под влиянием Древних богов, он начал сомневаться 
+              в дарах титанов и искать «идеальное оружие», способное защитить мир любой ценой. Драктиры были задуманы как идеальная армия, полностью подчинённая воле своего создателя. Когда эксперименты вышли из-под контроля, Нелтарион погрузил драктиров в магический сон и запечатал Аберрус, скрыв его даже от других аспектов."
+              data-img="@img/raids/2.jpg">
+            </div>
+
+            <div class="js-raid" data-name="Амирдрассил, 
+            Надежда Сна - патч 10.2"
+              data-desc="Амирдрассил - это новое Мирововое Древо, выращенное в Изумдрудном Сне как последняя надежда для мира и особенно
+            для народа ночных эльфов. После уничтожения Тельдрассила древняя связь кальдорай с природой была разорвана.Чтобы исцелить эту рану, Аспекты и их союзники решают создать новое древо — не в материальном мире, а в Изумрудном Сне, где сама жизнь находится в первозданном виде."
+              data-img="@img/raids/1.jpg">
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- RIGHT: big media -->
+        <div class="raids__media" aria-hidden="true">
+          <!-- 2 слоя для кроссфейда -->
+          <div class="raids__img raids__img--a js-raids-img-a"></div>
+          <div class="raids__img raids__img--b js-raids-img-b"></div>
+
+          <!-- PNG рамка (заглушка, как в stages) -->
+          <div class="raids__frame-main" aria-hidden="true"></div>
+
+          <!-- текст сверху внутри картинки -->
+          <div class="raids__text">
+            <div class="raids__text-desc js-raids-desc"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="portals" id="portals">
+    <div class="portals__bg" aria-hidden="true"></div>
+
+    <div class="portals__container">
+      <div class="portals__stage">
+        <!-- левый -->
+        <a class="portal portal--left" href="#" data-fls-popup data-fls-popup-link="video"
+          data-fls-popup-youtube="dQw4w9WgXcQ" style="--img:url('@img/portals/1.jpg')"
+          aria-label="Открыть видео: Трейлер">
+          <span class="portal__ring" aria-hidden="true"></span>
+          <span class="portal__inner" aria-hidden="true"></span>
+          <span class="portal__play" aria-hidden="true"></span>
+        </a>
+
+        <!-- центр -->
+        <a class="portal portal--center is-active" href="#" data-fls-popup-link="video"
+          data-fls-popup-youtube="aqz-KE-bpKQ" style="--img:url('@img/portals/2.jpg')"
+          aria-label="Открыть видео: Основное">
+          <span class="portal__ring" aria-hidden="true"></span>
+          <span class="portal__inner" aria-hidden="true"></span>
+          <span class="portal__play" aria-hidden="true"></span>
+        </a>
+
+        <!-- правый -->
+        <a class="portal portal--right" href="#" data-fls-popup-link="video" data-fls-popup-youtube="kJQP7kiw5Fk"
+          style="--img:url('@img/portals/3.jpg')" aria-label="Открыть видео: Геймплей">
+          <span class="portal__ring" aria-hidden="true"></span>
+          <span class="portal__inner" aria-hidden="true"></span>
+          <span class="portal__play" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="community" id="community">
+    <div class="community__bg" aria-hidden="true"></div>
+
+    <div class="community__container">
+      <h2 class="community__title">ДИНАМИЧНОЕ СООБЩЕСТВО</h2>
+
+      <div class="community__scene" aria-hidden="true">
+        <model-viewer class="community__model" src="/assets/models/dragon_gold_xtra.glb" alt="" loading="lazy" autoplay
+          animation-name="Idle" environment-image="neutral" exposure="2" shadow-intensity="0.6"
+          interaction-prompt="none" disable-zoom disable-pan disable-tap camera-orbit="-44deg 103deg 0.8m"
+          camera-target="0m 0.75m 0m"></model-viewer>
+      </div>
+
+      <div class="community__content-wrap">
+        <div class="community__content">
+
+          <p class="community__text">
+            Присоединяйтесь к одному
+            из процветающих галактических хабов сообщества, где вы ипутешественники-единомышленники сможете открыть
+            для себя новые горизонты.
+          </p>
+
+          <div class="community__social">
+            <a class="soc-btn" href="#" aria-label="Чат">
+              <span class="soc-btn__icon soc-btn__icon--chat" aria-hidden="true"></span>
+            </a>
+            <a class="soc-btn" href="#" aria-label="Instagram">
+              <span class="soc-btn__icon soc-btn__icon--ig" aria-hidden="true"></span>
+            </a>
+            <a class="soc-btn" href="#" aria-label="YouTube">
+              <span class="soc-btn__icon soc-btn__icon--yt" aria-hidden="true"></span>
+            </a>
+            <a class="soc-btn" href="#" aria-label="Discord">
+              <span class="soc-btn__icon soc-btn__icon--dc" aria-hidden="true"></span>
+            </a>
+            <a class="soc-btn" href="#" aria-label="Telegram">
+              <span class="soc-btn__icon soc-btn__icon--tg" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dragon-shot">
+    <img class="dragon-shot__img" src="@img/dragon/shot.jpg" alt="" loading="lazy" decoding="async" />
+  </div>
+
+  <section class="cta" id="start">
+
+    <div class="cta__container">
+      <div class="cta__wrapper">
+        <h2 class="cta__title">НАЧНИТЕ СВОЁ<br>ПУТЕШЕСТВИЕ СЕЙЧАС</h2>
+
+        <div class="cta__subtitle">ЗАРЕГИСТРИРОВАТЬСЯ</div>
+
+        <form class="cta__form" action="#" method="post">
+          <div class="cta__grid">
+            <label class="cta__field">
+              <span class="sr-only">Email</span>
+              <input class="cta__input" type="email" name="email" placeholder="Введите Email" required>
+            </label>
+
+            <label class="cta__field">
+              <span class="sr-only">Логин</span>
+              <input class="cta__input" type="text" name="login" placeholder="Логин/Ник" required>
+            </label>
+
+            <label class="cta__agree">
+              <input class="cta__check" type="checkbox" required>
+              <span class="cta__agree-text">Нажимая на кнопку, я соглашаюсь с политикой конфиденциальности.</span>
+            </label>
+
+            <button class="cta__submit btn" type="submit">РЕГИСТРАЦИЯ</button>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>

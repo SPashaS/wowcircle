@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>iconfont</title>
+	<style>
+		body{
+			padding: 1.875rem;
+			font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+			font-size: 1em;
+			background-color:#333;
+			color:#fff;
+		}
+		h1{
+			font-size: 1.875rem;
+			margin-bottom: 2rem;
+		}
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2.5rem;
+			margin: 0;
+			padding: 0;
+		}
+		ul li{
+			margin-bottom: 0.625rem;
+			display: inline-flex;
+			gap: 0.625rem;
+			list-style: none;
+			align-items: center;
+		}
+		ul li::before{
+			font-size: 2rem;
+		}
+		@font-face { 
+	font-family: "iconfont"; 
+	font-display: swap;
+	src: url("E://Study/it-incubator/projects/2025/app4u/src/assets/svgicons/preview/iconfont.woff2?6689a326bdbda412c0f79f31582f3b02") format("woff2"); 
+} 
+[class*="--icon-"]::before{
+	font-family: iconfont; 
+}
+	[class*="--icon-check"]::before { 
+		content: "\f101"; 
+	} 
+	[class*="--icon-arr"]::before { 
+		content: "\f102"; 
+	} 
+	[class*="--icon-arr-spoller"]::before { 
+		content: "\f103"; 
+	} 
+
+	</style>
+</head>
+<body>
+	<h1>Перелік іконок та їх класів:</h1>
+	<ul>
+			<li class="--icon-check">--icon-check</li>
+			<li class="--icon-arr">--icon-arr</li>
+			<li class="--icon-arr-spoller">--icon-arr-spoller</li>
+	</ul>
+</body>
+</html>

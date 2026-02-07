@@ -3,24 +3,32 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="styles/fonts/iconfont.css?v=1770243095498">
+		<link rel="stylesheet" href="styles/fonts/iconfont.css?v=1770489922307">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js?v=1770243095498"></script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js?v=1770489922307"></script>
 		<title>Home Page</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1770243095498"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1770243095498">
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1770243095498">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1770243095498">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1770489922307"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1770489922307">
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1770489922307">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1770489922307">
 	</head>
 	<body>
 		<div class="wrapper">
-			<header data-fls-header="" data-fls-header-scroll="" data-fls-header-scroll-show="" class="header">
-				<div class="header__container"></div>
-			</header>
-			<header class="header">
-				<div class="container">
-					<nav class="topnav" aria-label="Главное меню">
+			<header class="header" data-fls-header="">
+				<div class="header__container">
+					<div class="lang-swap" data-current="ru">
+						<a class="lang-swap__item" data-lang="ru" href="/ru/">
+							<img class="lang-swap__flag" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAMAAAC6CgRnAAACc1BMVEUAAABMKilMPz9VBwFaWlpZWVlcXFxTBwEACDhYWFhVVVVRBwFUVFRQBgFRUVFHBgEABjoAET1WBwBXV1dUCAEACDcABjpVBgAABTdTU1NSUlJSUlJSUlJOBgBJBgFQUFBMTExNMC9WCAEACjwACjwACDhVBgAACjtUCAFTBwFLBwJRBwFVVVVVVVVVVVVRBgAABzUADjdQBgFPBgFUBgBPBwEABjJPBgEADTRSUlJNBgFLTUxPT09NBgBNBgFLBgFhCQEALa0ALKkAKqNmZmYAJpgAIooAD04ADUoACkFqCwBeCQAALKcAKZyZmpoAH394eHh2dnZubm4AF2UAC0RyDQJtDAGioqIAKaCVlZUAJpQAJJKGh4eCgoIAH4J9fX0AG3cAF2pjY2NhYWFdXl4AElsAEld+EQOWFAGCEQFbBwDOz8++vr4AKq6pqakAKqUAOJ0AGpwAHXtra2sAFWIAEVWMEwOmGAKiFwKzGgGFEQFmCwF8DwB3DgDS09LIycm4uLiwsbGtra2RkZGPj48AI48AIo6JiYkAIYeEhIQAG3QAGXJxcXEAGm5paWlfX1/DIhK3HAOQFAKcFgGKEgF1DgHUHwBYCADCwsK7u7u0tLSsrKwAJp4AKJoANpkAGJMAMo8AL4YAE4EAK30AEXZzc3MAJ3IAImcAC10ACFEAGE8ABkcAFEUACz8ACjy+IRC5IBCvHg+mGg6YFwasGgRWCgSTFAJvDQFnCwFkCQHOHgC+GwDKzcvExsUAG6IAHKEAG6Gfn5+enp4ANZUAF4yLjIsAFYkAEG1qamoADWgAHlwAHFmcGQ2PFQqnGQPIHgDFHgDjEf7rAAAAQHRSTlMACgby7OH76dfMvJ6RfTcV/fzr59a3raaLdW1lXEIzGhUQ9/Ty5tjUysPBrJ+el4d+eHJsbGhZVVRFPy4mJiIdYGeoewAAAnVJREFUKM9VknVXmnEYhn8K2K2zc93d+UopvLTSIApMcjBko7Gd3d3dbnavu7ePtJchbF7/Xuc+93POcwMPackhQRh0dODpxNu+YB9pCYFymRSPIJNjzob9r24EyqVNrAYmkznJ+oxvxiT6eIxvElrW1MCQiGtFoloJY9Io9QtJ33PJaKmRKa6u5NNoNH5ltZjBwstD3MkwjIzFEFfSuLr+8nIdl1YhkjTg/RJcKiOo2ciorXirKyvVarWlff1cfrWEJUW7DkrywzPFFW/KS3tKNBpNSU9vGZcvYhibz/iC9CB5E1PE55b1vnheXFysKdH26WgfJCxZ9C1wPXJh7tv01PjoyLuhhwhDI6PjU9Nf5xYiL4D4iPnZmS8TYx+HDYbXL18ZDMPvxyY+zczOk2LBgafZjx81FtUIB3l6LBZLwVEFRHpdTmFW7jEQQMouzKmnE4VUHCUzMxOLoxKe5OUX3M/KPQyOuFwdnSjYc3oeocrtnnlyXofjeXKHvH1VgzwcBUvR86hCdx8pAMSTEFdfRBQO4LAPEPQDnlwsuBrhkgX59JoqAYFAEAiJeUWNOa668yD85DrEUZhWV5aXFltaWhaXlle+/1Cw7ev+qQBchslOm9Ji3f2909XVtfNr12pWdjg4UBzypfATajtbZVq1rFlbW1uta+b2NpuTDKNuAoQUf5jcqejYaLeYf5ot7UqTysmBukPdi7qEgslsh62jbUOpbDPZHJ1kqDs4A/zF5yIKtnPYToVKpVI4OjlbiLrnHdO1GDVkJ3M22exN8hak9g8NB/+4c+6oGoag7W0IVkfFpYD93L0SfDzqICrmVGiqZ5x/AJVA6pZellk2AAAAAElFTkSuQmCC" alt="">
+							<span class="lang-swap__label">РУССКИЙ</span>
+							<span class="lang-swap__chev" aria-hidden="true"></span>
+						</a>
+						<a class="lang-swap__item" data-lang="en" href="/en/">
+							<img class="lang-swap__flag" src="data:image/png;base64,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" alt="">
+							<span class="lang-swap__label">ENGLISH</span>
+						</a>
+					</div>
+					<nav class="header__nav topnav" aria-label="Главное меню">
 						<ul class="topnav__list">
 							<li class="topnav__item">
 								<a class="topnav__link" href="#world">МИР</a>
@@ -58,17 +66,11 @@ environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prom
 disable-pan disable-tap camera-orbit="35deg 75deg 2.8m" camera-target="0m 1.15m 0m"
 style="width:100%; height:520px; background: transparent;"></model-viewer>
 -->
-						<model-viewer id="yseraModel" class="hero__model" src="./assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-246deg 112deg 1.5m" camera-target="2m 1.15m 1m"></model-viewer>
+						<model-viewer id="yseraModel" class="hero__model" src="/assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-246deg 112deg 1.5m" camera-target="2m 1.15m 1m"></model-viewer>
 					</div>
 					<div class="hero__content">
 						<h1 class="hero__title">ВАША БЕСКОНЕЧНАЯ ВСЕЛЕННАЯ</h1>
-						<p class="hero__subtitle">
-							Открытие WoW Circle Dragonflight x10 —
-							<strong>дата:</strong>
-							ХХ.ХХ.ХХ,
-							<strong>время:</strong>
-							ХХ:ХХ (МСК)
-						</p>
+						<p class="hero__subtitle">Открытие WoW Circle Dragonflight x10 ХХ.ХХ.ХХ в ХХ:ХХ по МСК</p>
 						<div class="hero__actions">
 							<a class="btn btn--primary" href="#features">ПОДРОБНЕЕ</a>
 							<a class="btn btn--secondary" href="#register">РЕГИСТРАЦИЯ</a>
@@ -77,7 +79,7 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 				</section>
 				<section class="features" id="features">
 					<div class="features__bg" aria-hidden="true"></div>
-					<div class="container">
+					<div class="features__container">
 						<div class="features__slider swiper" data-fls-slider="">
 							<div class="features__viewport swiper-wrapper">
 								<div class="features__slide swiper-slide">
@@ -156,7 +158,7 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 					<div class="mods__bg" aria-hidden="true"></div>
 					<div class="mods__container">
 						<div class="mods__content">
-							<h2 class="mods__title">МОДИФИКАЦИИ</h2>
+							<h2 class="mods__title line line--left">МОДИФИКАЦИИ</h2>
 							<p class="mods__subtitle js-mods-subtitle"></p>
 							<p class="mods__desc js-mods-desc"></p>
 						</div>
@@ -167,10 +169,20 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 								<div class="mods__portal js-mods-item" data-title="PVP СПЕКТАТОР" data-desc="Наблюдай PVP-бои в реальном времени." style="--img:url('./assets/img/mods/3.jpg');"></div>
 								<div class="mods__portal js-mods-item" data-title="XP RATE" data-desc="Меняй множитель опыта на лету." style="--img:url('./assets/img/mods/4.jpg');"></div>
 								<div class="mods__portal js-mods-item" data-title="UI МОДЫ" data-desc="Дополнительные улучшения интерфейса." style="--img:url('./assets/img/mods/5.jpg');"></div>
-								<div class="mods__portal js-mods-item" data-title="КРОССФРАКЦИЯ" data-desc="Удобная игра с друзьями вне зависимости от фракции." style="--img:url('./assets/img/mods/6.jpg');"></div>
-								<div class="mods__portal js-mods-item" data-title="АУКЦИОН" data-desc="Улучшенный поиск и фильтры для торговли." style="--img:url('./assets/img/mods/7.jpg');"></div>
-								<div class="mods__portal js-mods-item" data-title="ТЕЛЕПОРТЫ" data-desc="Быстрые перемещения по ключевым точкам мира." style="--img:url('./assets/img/mods/2.jpg');"></div>
-								<div class="mods__portal js-mods-item" data-title="КАСТОМ-КВЕСТЫ" data-desc="Дополнительный контент и награды." style="--img:url('./assets/img/mods/6.jpg');"></div>
+								<!--
+<div class="mods__portal js-mods-item" data-title="КРОССФРАКЦИЯ"
+data-desc="Удобная игра с друзьями вне зависимости от фракции." style="--img:url('@img/mods/6.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="АУКЦИОН"
+data-desc="Улучшенный поиск и фильтры для торговли." style="--img:url('@img/mods/7.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="ТЕЛЕПОРТЫ"
+data-desc="Быстрые перемещения по ключевым точкам мира." style="--img:url('@img/mods/8.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="КАСТОМ-КВЕСТЫ"
+data-desc="Дополнительный контент и награды." style="--img:url('@img/mods/9.jpg');">
+</div>
+-->
 							</div>
 						</div>
 						<div class="mods__nav">
@@ -181,13 +193,14 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 				</section>
 				<section class="stages" id="stages">
 					<!-- 2 фона секции: НЕ меняем, НЕ трогаем JS -->
-					<div class="stages__bg" aria-hidden="true"></div>
-					<div class="stages__bg2" aria-hidden="true"></div>
-					<div class="container">
+					<div class="stages__bg stages__bg--frst" aria-hidden="true"></div>
+					<div class="stages__bg stages__bg--sec" aria-hidden="true"></div>
+					<!-- <div class="stages__bg2" aria-hidden="true"></div> -->
+					<div class="stages__container">
 						<div class="stages__header">
-							<h2 class="stages__title">ЭТАПЫ ПОСТЕПЕННОГО ОТКРЫТИЯ КОНТЕНТА</h2>
+							<h2 class="stages__title line">ЭТАПЫ ПОСТЕПЕННОГО ОТКРЫТИЯ КОНТЕНТА</h2>
 						</div>
-						<div class="stages__container js-stages">
+						<div class="stages__container-body js-stages">
 							<div class="stages__media" aria-hidden="true">
 								<div class="stages__img stages__img"></div>
 								<!-- место под PNG рамку большой картинки -->
@@ -200,83 +213,62 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 								<div class="stages__steps js-steps"></div>
 							</aside>
 							<div class="stages__data js-data" hidden>
-								<div class="js-stage" data-text="«ДРАКОНИЙ ПОЛЁТ» (10.0) - СТАРТ СЕРВЕРА" data-img="assets/img/stages/1.jpg"></div>
-								<div class="js-stage" data-text="«УЛДИ НЕЛТАРИОНА» (10.1) - СКОРО!" data-img="assets/img/stages/2.jpg"></div>
-								<div class="js-stage" data-text="«СТРАЖИ СНА» (10.2) - СКОРО!" data-img="assets/img/stages/3.jpg"></div>
-								<div class="js-stage" data-text="«ТЁМНОЕ СЕРДЦЕ» (10.3) - СКОРО!" data-img="assets/img/stages/4.jpg"></div>
+								<div class="js-stage" data-title="«Драконий полет»" data-sub="(10.0) - старт сервера" data-img="assets/img/stages/1.jpg"></div>
+								<div class="js-stage" data-title="«Угли Нелтариона»" data-sub="(10.1) - СКОРО!" data-img="assets/img/stages/2.jpg"></div>
+								<div class="js-stage" data-title="«Стражи Сна»" data-sub="(10.2) - СКОРО!" data-img="assets/img/stages/3.jpg"></div>
+								<div class="js-stage" data-title="«Тёмное сердце»" data-sub="(10.2.7) - СКОРО!" data-img="assets/img/stages/4.jpg"></div>
 							</div>
 						</div>
 					</div>
 				</section>
 				<section class="df" id="dragonflight">
-					<div class="df__bg" aria-hidden="true"></div>
+					<div class="df__bg df__bg--frst" aria-hidden="true"></div>
+					<div class="df__bg df__bg--sec" aria-hidden="true"></div>
 					<div class="df__container">
 						<header class="df__header">
-							<h2 class="df__title">ОСОБЕННОСТИ ДОПОЛНЕНИЯ DRAGONFLIGHT</h2>
+							<h2 class="df__title line">ОСОБЕННОСТИ ДОПОЛНЕНИЯ DRAGONFLIGHT</h2>
 						</header>
 						<div class="df__frame">
 							<div class="df__slider swiper">
 								<div class="swiper-wrapper">
-									<article class="df-card swiper-slide">
-										<div class="df-card__body">
-											<div class="df-card__media">
-												<picture>
-													<source media="(max-width: 600px)" srcset="./assets/img/df/1-600.webp" type="image/webp">
-													<source media="(max-width: 1200px)" srcset="./assets/img/df/1-1200.webp" type="image/webp">
-													<img alt="Новая раса — Драктиры" loading="lazy" src="./assets/img/df/1.webp">
-												</picture>
-											</div>
-											<h3 class="df-card__title">
-												НОВАЯ РАСА
-												<br>
-												ДРАКТИРЫ
-											</h3>
-										</div>
-										<a class="df-card__btn" href="#">
-											<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
-											<span class="df-card__lvl">70</span>
-										</a>
-									</article>
-									<article class="df-card swiper-slide">
-										<div class="df-card__body">
-											<div class="df-card__media">
-												<picture>
-													<source media="(max-width: 600px)" srcset="./assets/img/df/2-600.webp" type="image/webp">
-													<source media="(max-width: 1200px)" srcset="./assets/img/df/2-1200.webp" type="image/webp">
-													<img alt="Новая локация — Драконий остров" loading="lazy" src="./assets/img/df/2.webp">
-												</picture>
-											</div>
-											<h3 class="df-card__title">
-												НОВАЯ ЛОКАЦИЯ
-												<br>
-												ДРАКОНИЙ ОСТРОВ
-											</h3>
-										</div>
-										<a class="df-card__btn" href="#">
-											<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
-											<span class="df-card__lvl">70</span>
-										</a>
-									</article>
-									<article class="df-card swiper-slide">
-										<div class="df-card__body">
-											<div class="df-card__media">
-												<picture>
-													<source media="(max-width: 600px)" srcset="./assets/img/df/3-600.webp" type="image/webp">
-													<source media="(max-width: 1200px)" srcset="./assets/img/df/3-1200.webp" type="image/webp">
-													<img alt="Новый класс — Пробудитель" loading="lazy" src="./assets/img/df/3.webp">
-												</picture>
-											</div>
-											<h3 class="df-card__title">
-												НОВЫЙ КЛАСС
-												<br>
-												ПРОБУДИТЕЛЬ
-											</h3>
-										</div>
-										<a class="df-card__btn" href="#">
-											<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
-											<span class="df-card__lvl">70</span>
-										</a>
-									</article>
+									<!--
+<article class="df-card swiper-slide">
+<div class="df-card__body">
+<div class="df-card__media">
+<img src="@img/df/1.jpg" alt="Новая раса — Драктиры" loading="lazy">
+</div>
+<h3 class="df-card__title">НОВАЯ РАСА<br>ДРАКТИРЫ</h3>
+</div>
+<a class="df-card__btn" href="#">
+<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+<span class="df-card__lvl">70</span>
+</a>
+</article>
+<article class="df-card swiper-slide">
+<div class="df-card__body">
+<div class="df-card__media">
+<img src="@img/df/2.jpg" alt="Новая локация — Драконий остров" loading="lazy">
+</div>
+<h3 class="df-card__title">НОВАЯ ЛОКАЦИЯ<br>ДРАКОНИЙ ОСТРОВ</h3>
+</div>
+<a class="df-card__btn" href="#">
+<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+<span class="df-card__lvl">70</span>
+</a>
+</article>
+<article class="df-card swiper-slide">
+<div class="df-card__body">
+<div class="df-card__media">
+<img src="@img/df/3.jpg" alt="Новый класс — Пробудитель" loading="lazy">
+</div>
+<h3 class="df-card__title">НОВЫЙ КЛАСС<br>ПРОБУДИТЕЛЬ</h3>
+</div>
+<a class="df-card__btn" href="#">
+<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+<span class="df-card__lvl">70</span>
+</a>
+</article>
+-->
 									<article class="df-card swiper-slide">
 										<div class="df-card__body">
 											<div class="df-card__media">
@@ -345,75 +337,119 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 				<section class="raids" id="raids">
 					<div class="raids__bg" aria-hidden="true"></div>
 					<div class="raids__overlay" aria-hidden="true"></div>
-					<div class="container">
+					<div class="raids__container">
 						<header class="raids__header">
-							<h2 class="raids__title">ПРИМИ УЧАСТИЕ В РЕЙДАХ</h2>
+							<h2 class="raids__title line">ПРИМИ УЧАСТИЕ В РЕЙДАХ</h2>
 						</header>
-						<div class="raids__container js-raids">
+						<div class="raids__body js-raids">
 							<!-- LEFT: buttons -->
 							<aside class="raids__side">
 								<div class="raids__steps js-raids-steps"></div>
 								<!-- data source (можно держать как у тебя) -->
 								<div class="raids__data js-raids-data" hidden>
-									<div class="js-raid" data-name="Хранилище
- Воплощений - 10.0" data-desc="Много тысяч лет назад, после победы над первородными воплощениями, драконьи аспекты не смогли уничтожить их окончательно. 
- Вместо этого они создали особое хранилище воплощений, где заключили самых опасных врагов под магическими печатями. 
- Одним из этих существ была Рашагет - Воплощение бурь, олицетворяющее первозданную стихию, ненавидящую титанов и их «порядок»." data-img="assets/img/raids/3.jpg"></div>
-									<div class="js-raid" data-name="Аберрус, Затенённый 
- тигельТак - патч 10.1" data-desc="Аберрус - это тайный подземный комплекс, созданный Нелтарион в глубине Драконьих островов задолго до его окончательного падения и превращения 
- в Смертокрыла.Изначально Нелтарион был хранителем земли и защитником Азерота. Однако, находясь под влиянием Древних богов, он начал сомневаться 
- в дарах титанов и искать «идеальное оружие», способное защитить мир любой ценой. Драктиры были задуманы как идеальная армия, полностью подчинённая воле своего создателя. Когда эксперименты вышли из-под контроля, Нелтарион погрузил драктиров в магический сон и запечатал Аберрус, скрыв его даже от других аспектов." data-img="assets/img/raids/2.jpg"></div>
-									<div class="js-raid" data-name="Амирдрассил, 
- Надежда Сна - патч 10.2" data-desc="Амирдрассил - это новое Мирововое Древо, выращенное в Изумдрудном Сне как последняя надежда для мира и особенно
- для народа ночных эльфов. После уничтожения Тельдрассила древняя связь кальдорай с природой была разорвана.Чтобы исцелить эту рану, Аспекты и их союзники решают создать новое древо — не в материальном мире, а в Изумрудном Сне, где сама жизнь находится в первозданном виде." data-img="assets/img/raids/1.jpg"></div>
+									<div class="js-raid" data-name="Хранилище Воплощений" data-meta="10.0" data-img="assets/img/raids/3.jpg" data-alt="Хранилище Воплощений, рейд Dragonflight 10.0">
+										<div class="js-desc" hidden>
+											Много тысяч лет назад, после победы над первородными воплощениями, драконьи аспекты не смогли уничтожить
+                их окончательно.
+                Вместо этого они создали особое хранилище воплощений, где заключили самых опасных врагов под магическими
+                печатями.
+                Одним из этих существ была Рашагет — Воплощение бурь, олицетворяющее первозданную стихию, ненавидящую
+                титанов и их «порядок».
+										</div>
+									</div>
+									<div class="js-raid" data-name="Аберрус, Затенённый тигель" data-meta="патч 10.1" data-img="assets/img/raids/2.jpg" data-alt="Аберрус, Затенённый тигель, патч 10.1">
+										<div class="js-desc" hidden>
+											Аберрус — это тайный подземный комплекс, созданный Нелтарионом в глубине Драконьих островов задолго до
+                его окончательного падения и превращения в Смертокрыла.
+                Изначально Нелтарион был хранителем земли и защитником Азерота. Однако, находясь под влиянием Древних
+                богов, он начал сомневаться в дарах титанов и искать «идеальное оружие», способное защитить мир любой
+                ценой.
+                Драктиры были задуманы как идеальная армия, полностью подчинённая воле своего создателя. Когда
+                эксперименты вышли из-под контроля, Нелтарион погрузил драктиров в магический сон и запечатал Аберрус,
+                скрыв его даже от других аспектов.
+										</div>
+									</div>
+									<div class="js-raid" data-name="Амирдрассил, Надежда Сна" data-meta="патч 10.2" data-img="assets/img/raids/1.jpg" data-alt="Амирдрассил, Надежда Сна, патч 10.2">
+										<div class="js-desc" hidden>
+											Амирдрассил — это новое Мировое Древо, выращенное в Изумрудном Сне как последняя надежда для мира и
+                особенно для народа ночных эльфов.
+                После уничтожения Тельдрассила древняя связь кальдорай с природой была разорвана. Чтобы исцелить эту
+                рану, Аспекты и их союзники решают создать новое древо — не в материальном мире, а в Изумрудном Сне, где
+                сама жизнь находится в первозданном виде.
+										</div>
+									</div>
 								</div>
 							</aside>
-							<!-- RIGHT: big media -->
-							<div class="raids__media" aria-hidden="true">
-								<!-- 2 слоя для кроссфейда -->
-								<div class="raids__img raids__img--a js-raids-img-a"></div>
-								<div class="raids__img raids__img--b js-raids-img-b"></div>
-								<!-- PNG рамка (заглушка, как в stages) -->
-								<div class="raids__frame-main" aria-hidden="true"></div>
-								<!-- текст сверху внутри картинки -->
-								<div class="raids__text">
-									<div class="raids__text-desc js-raids-desc"></div>
+							<div class="raids__media">
+								<div class="raids__caption js-raids-caption"></div>
+								<div class="raids__img-wrap">
+									<img class="raids__img js-raids-img" src="" alt="">
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
-				<section class="portals" id="portals">
+				<!--
+<div class="portals" id="portals">
+<div class="portals__bg" aria-hidden="true"></div>
+<div class="portals__container">
+<div class="portals__stage">
+<a class="portal portal--left" href="#" data-fls-popup="popup" data-fls-popup-link="popup"
+data-fls-popup-youtube="dQw4w9WgXcQ" style="--img:url('@img/portals/1.jpg')"
+aria-label="Открыть видео: Трейлер">
+<span class="portal__ring" aria-hidden="true"></span>
+<span class="portal__inner" aria-hidden="true"></span>
+<span class="portal__play" aria-hidden="true"></span>
+</a>
+<a class="portal portal--center is-active" href="#" data-fls-popup="popup" data-fls-popup-link="popup"
+data-fls-popup-youtube="aqz-KE-bpKQ" style="--img:url('@img/portals/2.jpg')"
+aria-label="Открыть видео: Основное">
+<span class="portal__ring" aria-hidden="true"></span>
+<span class="portal__inner" aria-hidden="true"></span>
+<span class="portal__play" aria-hidden="true"></span>
+</a>
+<a class="portal portal--right" href="#" data-fls-popup="popup" data-fls-popup-link="popup" data-fls-popup-youtube="kJQP7kiw5Fk"
+style="--img:url('@img/portals/3.jpg')" aria-label="Открыть видео: Геймплей">
+<span class="portal__ring" aria-hidden="true"></span>
+<span class="portal__inner" aria-hidden="true"></span>
+<span class="portal__play" aria-hidden="true"></span>
+</a>
+</div>
+</div>
+</div>
+-->
+				<div class="portals" id="portals">
 					<div class="portals__bg" aria-hidden="true"></div>
 					<div class="portals__container">
 						<div class="portals__stage">
 							<!-- левый -->
-							<a class="portal portal--left" href="#" data-fls-popup="" data-fls-popup-link="video" data-fls-popup-youtube="dQw4w9WgXcQ" style="--img:url('./assets/img/portals/1.jpg')" aria-label="Открыть видео: Трейлер">
+							<button type="button" class="portal portal--left" data-fls-popup-link="popup" data-fls-popup-youtube="dQw4w9WgXcQ" style="--img:url('./assets/img/portals/1.jpg')" aria-label="Открыть видео: Трейлер">
 								<span class="portal__ring" aria-hidden="true"></span>
 								<span class="portal__inner" aria-hidden="true"></span>
 								<span class="portal__play" aria-hidden="true"></span>
-							</a>
+							</button>
 							<!-- центр -->
-							<a class="portal portal--center is-active" href="#" data-fls-popup-link="video" data-fls-popup-youtube="aqz-KE-bpKQ" style="--img:url('./assets/img/portals/2.jpg')" aria-label="Открыть видео: Основное">
+							<button type="button" class="portal portal--center is-active" data-fls-popup-link="popup" data-fls-popup-youtube="aqz-KE-bpKQ" style="--img:url('./assets/img/portals/2.jpg')" aria-label="Открыть видео: Основное">
 								<span class="portal__ring" aria-hidden="true"></span>
 								<span class="portal__inner" aria-hidden="true"></span>
 								<span class="portal__play" aria-hidden="true"></span>
-							</a>
+							</button>
 							<!-- правый -->
-							<a class="portal portal--right" href="#" data-fls-popup-link="video" data-fls-popup-youtube="kJQP7kiw5Fk" style="--img:url('./assets/img/portals/3.jpg')" aria-label="Открыть видео: Геймплей">
+							<button type="button" class="portal portal--right" data-fls-popup-link="popup" data-fls-popup-youtube="kJQP7kiw5Fk" style="--img:url('./assets/img/portals/3.jpg')" aria-label="Открыть видео: Геймплей">
 								<span class="portal__ring" aria-hidden="true"></span>
 								<span class="portal__inner" aria-hidden="true"></span>
 								<span class="portal__play" aria-hidden="true"></span>
-							</a>
+							</button>
 						</div>
 					</div>
-				</section>
+				</div>
 				<section class="community" id="community">
-					<div class="community__bg" aria-hidden="true"></div>
+					<div class="community__bg community__bg--frst" aria-hidden="true"></div>
+					<div class="community__bg community__bg--sec" aria-hidden="true"></div>
 					<div class="community__container">
 						<h2 class="community__title">ДИНАМИЧНОЕ СООБЩЕСТВО</h2>
 						<div class="community__scene" aria-hidden="true">
-							<model-viewer class="community__model" src="./assets/models/dragon_gold_xtra.glb" alt="" loading="lazy" autoplay animation-name="Idle" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-44deg 103deg 0.8m" camera-target="0m 0.75m 0m"></model-viewer>
+							<model-viewer class="community__model" src="/assets/models/dragon_gold_xtra.glb" alt="" loading="lazy" autoplay animation-name="Idle" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-44deg 103deg 0.8m" camera-target="0m 0.75m 0m"></model-viewer>
 						</div>
 						<div class="community__content-wrap">
 							<div class="community__content">
@@ -444,11 +480,7 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 					</div>
 				</section>
 				<div class="dragon-shot">
-					<picture>
-						<source media="(max-width: 600px)" srcset="./assets/img/dragon/shot-600.webp" type="image/webp">
-						<source media="(max-width: 1200px)" srcset="./assets/img/dragon/shot-1200.webp" type="image/webp">
-						<img class="dragon-shot__img" alt="" loading="lazy" decoding="async" src="./assets/img/dragon/shot.webp">
-					</picture>
+					<div class="dragon-shot__bg"></div>
 				</div>
 				<section class="cta" id="start">
 					<div class="cta__container">
@@ -500,6 +532,19 @@ style="width:100%; height:520px; background: transparent;"></model-viewer>
 					</nav>
 				</div>
 			</footer>
+		</div>
+		<div data-fls-popup="popup" aria-hidden="true" class="popup">
+			<div data-fls-popup-wrapper="" class="popup__wrapper">
+				<div data-fls-popup-body="" class="popup__body">
+					<button data-fls-popup-close="" type="button" class="popup__close">
+						<svg width="23" height="23" viewbox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square"></path>
+							<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square"></path>
+						</svg>
+					</button>
+					<div data-fls-popup-content="" class="popup__text"><!-- Контент --></div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

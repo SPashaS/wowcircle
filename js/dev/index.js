@@ -4785,38 +4785,29 @@ class Popup {
   }
 }
 document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () => window.flsPopup = new Popup({})) : null;
-function headerScroll() {
-  const header = document.querySelector("[data-fls-header-scroll]");
-  const headerShow = header.hasAttribute("data-fls-header-scroll-show");
-  const headerShowTimer = header.dataset.flsHeaderScrollShow ? header.dataset.flsHeaderScrollShow : 500;
-  const startPoint = header.dataset.flsHeaderScroll ? header.dataset.flsHeaderScroll : 1;
-  let scrollDirection = 0;
-  let timer;
-  document.addEventListener("scroll", function(e) {
-    const scrollTop = window.scrollY;
-    clearTimeout(timer);
-    if (scrollTop >= startPoint) {
-      !header.classList.contains("--header-scroll") ? header.classList.add("--header-scroll") : null;
-      if (headerShow) {
-        if (scrollTop > scrollDirection) {
-          header.classList.contains("--header-show") ? header.classList.remove("--header-show") : null;
-        } else {
-          !header.classList.contains("--header-show") ? header.classList.add("--header-show") : null;
-        }
-        timer = setTimeout(() => {
-          !header.classList.contains("--header-show") ? header.classList.add("--header-show") : null;
-        }, headerShowTimer);
-      }
-    } else {
-      header.classList.contains("--header-scroll") ? header.classList.remove("--header-scroll") : null;
-      if (headerShow) {
-        header.classList.contains("--header-show") ? header.classList.remove("--header-show") : null;
-      }
-    }
-    scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+(() => {
+  const box = document.querySelector(".lang-swap");
+  if (!box) return;
+  const current = box.dataset.current;
+  if (!current) return;
+  const items = [...box.querySelectorAll(".lang-swap__item")];
+  if (items.length !== 2) return;
+  const currentEl = items.find((el) => el.dataset.lang === current);
+  const otherEl = items.find((el) => el !== currentEl);
+  if (!currentEl || !otherEl) return;
+  items.forEach((el) => el.classList.remove("is-current"));
+  currentEl.classList.add("is-current");
+  if (currentEl !== items[0]) {
+    box.insertBefore(currentEl, otherEl);
+  }
+  currentEl.addEventListener("click", (e) => {
+    e.preventDefault();
+    box.classList.toggle("is-open");
   });
-}
-document.querySelector("[data-fls-header-scroll]") ? window.addEventListener("load", headerScroll) : null;
+  otherEl.addEventListener("click", () => {
+    box.classList.remove("is-open");
+  });
+})();
 (() => {
   const root = document.querySelector(".js-features");
   if (!root) return;
@@ -4929,37 +4920,64 @@ document.querySelector("[data-fls-header-scroll]") ? window.addEventListener("lo
   const root = document.querySelector(".mods");
   if (!root) return;
   const orbit = root.querySelector(".js-mods-orbit");
-  const items = [...root.querySelectorAll(".js-mods-item")];
   const subtitle = root.querySelector(".js-mods-subtitle");
   const desc = root.querySelector(".js-mods-desc");
   const prev = root.querySelector(".js-prev");
   const next = root.querySelector(".js-next");
-  if (!orbit || items.length === 0) return;
-  items.forEach((el, i) => el.style.setProperty("--i", String(i)));
-  orbit.style.setProperty("--count", String(items.length));
-  let active = 0;
+  if (!orbit) return;
+  const TARGET = 9;
+  const originals = [...root.querySelectorAll(".js-mods-item")].filter(
+    (el) => el.dataset.clone !== "1"
+  );
+  const realCount = originals.length;
+  if (realCount === 0) return;
+  root.querySelectorAll('.js-mods-item[data-clone="1"]').forEach((el) => el.remove());
+  const items = [...originals];
+  if (items.length < TARGET) {
+    let k = 0;
+    while (items.length < TARGET) {
+      const src = originals[k % realCount];
+      const clone = src.cloneNode(true);
+      clone.dataset.clone = "1";
+      clone.dataset.srcIndex = String(k % realCount);
+      src.parentNode.insertBefore(clone, src.nextSibling);
+      items.push(clone);
+      k++;
+    }
+  }
+  const count = Math.min(items.length, TARGET);
+  items.slice(0, count).forEach((el, i) => el.style.setProperty("--i", String(i)));
+  orbit.style.setProperty("--count", String(count));
+  let activePos = 0;
   const computeRadius = () => {
-    const n = items.length;
-    const portalW = items[0].getBoundingClientRect().width || 190;
-    const gap = 0.2;
-    const k = 1.15;
-    const rMin = (portalW + gap) / (2 * Math.sin(Math.PI / n));
+    const first = items[0];
+    const portalW = (first == null ? void 0 : first.getBoundingClientRect().width) || 190;
+    const gapPx = 18;
+    const k = 1.12;
+    const rMin = (portalW + gapPx) / (2 * Math.sin(Math.PI / count));
     const r = Math.max(320, Math.min(900, rMin * k));
     orbit.style.setProperty("--radius", `${Math.round(r)}px`);
   };
-  const setActive = (i) => {
-    active = (i + items.length) % items.length;
-    items.forEach(
-      (el, idx) => el.classList.toggle("is-active", idx === active)
-    );
-    const step = 360 / items.length;
-    orbit.style.setProperty("--rot", `${-active * step}deg`);
-    subtitle.textContent = items[active].dataset.title || "";
-    desc.textContent = items[active].dataset.desc || "";
+  const realIndexFromPos = (pos) => pos % realCount;
+  const render = () => {
+    const step = 360 / count;
+    orbit.style.setProperty("--rot", `${-activePos * step}deg`);
+    items.slice(0, count).forEach((el, idx) => {
+      el.classList.toggle("is-active", idx === activePos);
+    });
+    const ri = realIndexFromPos(activePos);
+    subtitle && (subtitle.textContent = originals[ri].dataset.title || "");
+    desc && (desc.textContent = originals[ri].dataset.desc || "");
   };
-  items.forEach((el, i) => el.addEventListener("click", () => setActive(i)));
-  prev == null ? void 0 : prev.addEventListener("click", () => setActive(active - 1));
-  next == null ? void 0 : next.addEventListener("click", () => setActive(active + 1));
+  const setActive = (pos) => {
+    activePos = (pos + count) % count;
+    render();
+  };
+  items.slice(0, count).forEach((el, pos) => {
+    el.addEventListener("click", () => setActive(pos));
+  });
+  prev == null ? void 0 : prev.addEventListener("click", () => setActive(activePos - 1));
+  next == null ? void 0 : next.addEventListener("click", () => setActive(activePos + 1));
   computeRadius();
   window.addEventListener("resize", computeRadius);
   setActive(0);
@@ -4973,7 +4991,8 @@ document.querySelector("[data-fls-header-scroll]") ? window.addEventListener("lo
   const caption = root.querySelector(".js-caption");
   if (!stepsBox || !img || !caption || dataEls.length === 0) return;
   const stages = dataEls.map((el) => ({
-    text: el.dataset.text || "",
+    title: el.dataset.title || "",
+    sub: el.dataset.sub || "",
     img: el.dataset.img || ""
   }));
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -4988,15 +5007,21 @@ document.querySelector("[data-fls-header-scroll]") ? window.addEventListener("lo
       btn.dataset.index = String(idx);
       btn.innerHTML = `
         <span class="stage-step__inner">
-          <span class="stage-step__text">${s.text}</span>
+          <span class="stage-step__title">${s.title}</span><br>
+          <span class="stage-step__sub">${s.sub}</span>
         </span>
       `;
       stepsBox.appendChild(btn);
     });
   };
+  const setCaption = (s) => {
+    caption.innerHTML = `
+      <span class="stages__cap-title">${s.title}</span> <span class="stages__cap-sub">${s.sub}</span>
+    `;
+  };
   const setMedia = (idx, withFade = true) => {
     const s = stages[idx];
-    caption.textContent = s.text;
+    setCaption(s);
     if (!withFade || reduceMotion.matches) {
       img.style.backgroundImage = `url("${s.img}")`;
       return;
@@ -5063,46 +5088,63 @@ document.querySelector("[data-fls-header-scroll]") ? window.addEventListener("lo
   if (!root) return;
   const dataEls = [...root.querySelectorAll(".js-raids-data .js-raid")];
   const stepsBox = root.querySelector(".js-raids-steps");
-  const imgA = root.querySelector(".js-raids-img-a");
-  const imgB = root.querySelector(".js-raids-img-b");
-  const descEl = root.querySelector(".js-raids-desc");
-  if (!stepsBox || !imgA || !imgB || !descEl || dataEls.length === 0) return;
-  const raids = dataEls.map((el) => ({
-    name: el.dataset.name || "",
-    meta: el.dataset.meta || "",
-    desc: el.dataset.desc || "",
-    img: el.dataset.img || ""
-  }));
+  const img = root.querySelector(".js-raids-img");
+  const textBox = root.querySelector(".js-raids-caption");
+  if (!stepsBox || !img || !textBox || dataEls.length === 0) return;
+  const raids = dataEls.map((el) => {
+    const descNode = el.querySelector(".js-desc");
+    const name = (el.dataset.name || "").trim();
+    const meta = (el.dataset.meta || "").trim();
+    return {
+      name,
+      meta,
+      img: el.dataset.img || "",
+      alt: (el.dataset.alt || `${name}${meta ? `, ${meta}` : ""}`).trim(),
+      desc: ((descNode == null ? void 0 : descNode.textContent) || "").trim()
+    };
+  });
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let active = 0;
-  let showA = true;
-  stepsBox.innerHTML = raids.map(
-    (r, idx) => `
-    <button type="button" class="raid-step${idx === 0 ? " is-active" : ""}" data-index="${idx}">
-      <span class="raid-step__inner">
-        <span class="raid-step__name">${r.name}</span>
-        <span class="raid-step__meta">${r.meta}</span>
-      </span>
-    </button>
-  `
-  ).join("");
-  const setText = (idx) => {
-    descEl.textContent = raids[idx].desc;
+  let t = null;
+  const renderSteps = () => {
+    stepsBox.innerHTML = "";
+    raids.forEach((r, idx) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "raid-step" + (idx === active ? " is-active" : "");
+      btn.dataset.index = String(idx);
+      btn.innerHTML = `
+        <span class="raid-step__inner">
+          <span class="raid-step__name">${r.name}</span>
+          <span class="raid-step__meta">${r.meta}</span>
+        </span>
+      `;
+      stepsBox.appendChild(btn);
+    });
   };
-  const setImage = (idx) => {
-    const url = `url("${raids[idx].img}")`;
-    if (reduceMotion.matches) {
-      imgA.style.backgroundImage = url;
-      imgA.classList.add("is-show");
-      imgB.classList.remove("is-show");
+  const setText = (idx) => {
+    textBox.textContent = raids[idx].desc;
+  };
+  const setImage = (idx, withFade = true) => {
+    const r = raids[idx];
+    img.alt = r.alt;
+    if (!withFade || reduceMotion.matches) {
+      img.src = r.img;
       return;
     }
-    const front = showA ? imgA : imgB;
-    const back = showA ? imgB : imgA;
-    back.style.backgroundImage = url;
-    back.classList.add("is-show");
-    front.classList.remove("is-show");
-    showA = !showA;
+    img.classList.add("is-changing");
+    window.clearTimeout(t);
+    t = window.setTimeout(() => {
+      const done = () => {
+        img.classList.remove("is-changing");
+        img.removeEventListener("load", done);
+        img.removeEventListener("error", done);
+      };
+      img.addEventListener("load", done);
+      img.addEventListener("error", done);
+      img.src = r.img;
+      if (img.complete) done();
+    }, 180);
   };
   const setActive = (idx) => {
     const next = Math.max(0, Math.min(idx, raids.length - 1));
@@ -5112,15 +5154,14 @@ document.querySelector("[data-fls-header-scroll]") ? window.addEventListener("lo
       b.classList.toggle("is-active", Number(b.dataset.index) === active);
     });
     setText(active);
-    setImage(active);
+    setImage(active, true);
   };
   stepsBox.addEventListener("click", (e) => {
     const btn = e.target.closest(".raid-step");
     if (!btn || !stepsBox.contains(btn)) return;
     setActive(Number(btn.dataset.index));
   });
+  renderSteps();
   setText(active);
-  imgA.style.backgroundImage = `url("${raids[0].img}")`;
-  imgA.classList.add("is-show");
-  imgB.classList.remove("is-show");
+  setImage(active, false);
 })();

@@ -240,7 +240,7 @@
   /* делаем картинку чуть уже и по центру */
   left: 50%;
   transform: translateX(-50%);
-  width: min(106.25rem, 100%);
+  width: 100%;
   background: url("../assets/img/ui/bg1.webp") center/cover no-repeat;
   height: 120%;
   -webkit-mask-image: linear-gradient(to bottom, #000 0rem, #000 calc(100% - 6.25rem), transparent 100%);
@@ -546,7 +546,7 @@
   /* делаем картинку чуть уже и по центру */
   left: 50%;
   transform: translateX(-50%);
-  width: min(106.25rem, 100%);
+  width: 100%;
   /* ✅ растворение картинки в прозрачность: 6.25rem сверху и 6.25rem снизу */
   -webkit-mask-image: linear-gradient(to bottom, transparent 0rem, #000 6.25rem, #000 calc(100% - 6.25rem), transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0rem, #000 6.25rem, #000 calc(100% - 6.25rem), transparent 100%);
@@ -679,7 +679,7 @@
   /* делаем картинку чуть уже и по центру */
   left: 50%;
   transform: translateX(-50%);
-  width: min(106.25rem, 100%);
+  width: 100%;
   /* ✅ растворение картинки в прозрачность: 6.25rem сверху и 6.25rem снизу */
   -webkit-mask-image: linear-gradient(to bottom, transparent 0rem, #000 6.25rem, #000 calc(100% - 6.25rem), transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0rem, #000 6.25rem, #000 calc(100% - 6.25rem), transparent 100%);
@@ -1006,7 +1006,7 @@
   /* делаем картинку чуть уже и по центру */
   left: 50%;
   transform: translateX(-50%);
-  width: min(106.25rem, 100%);
+  width: 100%;
   /* ✅ растворение картинки в прозрачность: 6.25rem сверху и 6.25rem снизу */
   -webkit-mask-image: linear-gradient(to bottom, transparent 0rem, #000 6.25rem, #000 calc(100% - 6.25rem), transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0rem, #000 6.25rem, #000 calc(100% - 6.25rem), transparent 100%);
@@ -1124,7 +1124,7 @@
   /* делаем картинку чуть уже и по центру */
   left: 50%;
   transform: translateX(-50%);
-  width: min(106.25rem, 100%);
+  width: 100%;
   background: url("../assets/img/ui/bg-dragon.webp") center/cover no-repeat;
   height: 100%;
   top: -2.9375rem;

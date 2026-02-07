@@ -3,15 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="styles/fonts/iconfont.css?v=1770489922307">
+		<link rel="stylesheet" href="styles/fonts/iconfont.css?v=1770490826179">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js?v=1770489922307"></script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js?v=1770490826179"></script>
 		<title>Home Page</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1770489922307"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1770489922307">
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1770489922307">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1770489922307">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1770490826179"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1770490826179">
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1770490826179">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1770490826179">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -61,12 +61,12 @@
 					<div class="hero__scene" aria-hidden="true">
 						<!--
 <model-viewer class="hero__model hero__model--ysera"
-src="/assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay animation-name="Idle"
+src="./assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay animation-name="Idle"
 environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom
 disable-pan disable-tap camera-orbit="35deg 75deg 2.8m" camera-target="0m 1.15m 0m"
 style="width:100%; height:520px; background: transparent;"></model-viewer>
 -->
-						<model-viewer id="yseraModel" class="hero__model" src="/assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-246deg 112deg 1.5m" camera-target="2m 1.15m 1m"></model-viewer>
+						<model-viewer id="yseraModel" class="hero__model" src="./assets/models/igc_yseradragon/igc_yseradragon_4497927.gltf" loading="lazy" autoplay animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-246deg 112deg 1.5m" camera-target="2m 1.15m 1m"></model-viewer>
 					</div>
 					<div class="hero__content">
 						<h1 class="hero__title">ВАША БЕСКОНЕЧНАЯ ВСЕЛЕННАЯ</h1>
@@ -231,44 +231,66 @@ data-desc="Дополнительный контент и награды." style
 						<div class="df__frame">
 							<div class="df__slider swiper">
 								<div class="swiper-wrapper">
-									<!--
-<article class="df-card swiper-slide">
-<div class="df-card__body">
-<div class="df-card__media">
-<img src="@img/df/1.jpg" alt="Новая раса — Драктиры" loading="lazy">
-</div>
-<h3 class="df-card__title">НОВАЯ РАСА<br>ДРАКТИРЫ</h3>
-</div>
-<a class="df-card__btn" href="#">
-<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
-<span class="df-card__lvl">70</span>
-</a>
-</article>
-<article class="df-card swiper-slide">
-<div class="df-card__body">
-<div class="df-card__media">
-<img src="@img/df/2.jpg" alt="Новая локация — Драконий остров" loading="lazy">
-</div>
-<h3 class="df-card__title">НОВАЯ ЛОКАЦИЯ<br>ДРАКОНИЙ ОСТРОВ</h3>
-</div>
-<a class="df-card__btn" href="#">
-<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
-<span class="df-card__lvl">70</span>
-</a>
-</article>
-<article class="df-card swiper-slide">
-<div class="df-card__body">
-<div class="df-card__media">
-<img src="@img/df/3.jpg" alt="Новый класс — Пробудитель" loading="lazy">
-</div>
-<h3 class="df-card__title">НОВЫЙ КЛАСС<br>ПРОБУДИТЕЛЬ</h3>
-</div>
-<a class="df-card__btn" href="#">
-<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
-<span class="df-card__lvl">70</span>
-</a>
-</article>
--->
+									<article class="df-card swiper-slide">
+										<div class="df-card__body">
+											<div class="df-card__media">
+												<picture>
+													<source media="(max-width: 600px)" srcset="./assets/img/df/1-600.webp" type="image/webp">
+													<source media="(max-width: 1200px)" srcset="./assets/img/df/1-1200.webp" type="image/webp">
+													<img alt="Новая раса — Драктиры" loading="lazy" src="./assets/img/df/1.webp">
+												</picture>
+											</div>
+											<h3 class="df-card__title">
+												НОВАЯ РАСА
+												<br>
+												ДРАКТИРЫ
+											</h3>
+										</div>
+										<a class="df-card__btn" href="#">
+											<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+											<span class="df-card__lvl">70</span>
+										</a>
+									</article>
+									<article class="df-card swiper-slide">
+										<div class="df-card__body">
+											<div class="df-card__media">
+												<picture>
+													<source media="(max-width: 600px)" srcset="./assets/img/df/2-600.webp" type="image/webp">
+													<source media="(max-width: 1200px)" srcset="./assets/img/df/2-1200.webp" type="image/webp">
+													<img alt="Новая локация — Драконий остров" loading="lazy" src="./assets/img/df/2.webp">
+												</picture>
+											</div>
+											<h3 class="df-card__title">
+												НОВАЯ ЛОКАЦИЯ
+												<br>
+												ДРАКОНИЙ ОСТРОВ
+											</h3>
+										</div>
+										<a class="df-card__btn" href="#">
+											<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+											<span class="df-card__lvl">70</span>
+										</a>
+									</article>
+									<article class="df-card swiper-slide">
+										<div class="df-card__body">
+											<div class="df-card__media">
+												<picture>
+													<source media="(max-width: 600px)" srcset="./assets/img/df/3-600.webp" type="image/webp">
+													<source media="(max-width: 1200px)" srcset="./assets/img/df/3-1200.webp" type="image/webp">
+													<img alt="Новый класс — Пробудитель" loading="lazy" src="./assets/img/df/3.webp">
+												</picture>
+											</div>
+											<h3 class="df-card__title">
+												НОВЫЙ КЛАСС
+												<br>
+												ПРОБУДИТЕЛЬ
+											</h3>
+										</div>
+										<a class="df-card__btn" href="#">
+											<span class="df-card__btn-text">ПОДРОБНЕЕ</span>
+											<span class="df-card__lvl">70</span>
+										</a>
+									</article>
 									<article class="df-card swiper-slide">
 										<div class="df-card__body">
 											<div class="df-card__media">
@@ -389,35 +411,6 @@ data-desc="Дополнительный контент и награды." style
 						</div>
 					</div>
 				</section>
-				<!--
-<div class="portals" id="portals">
-<div class="portals__bg" aria-hidden="true"></div>
-<div class="portals__container">
-<div class="portals__stage">
-<a class="portal portal--left" href="#" data-fls-popup="popup" data-fls-popup-link="popup"
-data-fls-popup-youtube="dQw4w9WgXcQ" style="--img:url('@img/portals/1.jpg')"
-aria-label="Открыть видео: Трейлер">
-<span class="portal__ring" aria-hidden="true"></span>
-<span class="portal__inner" aria-hidden="true"></span>
-<span class="portal__play" aria-hidden="true"></span>
-</a>
-<a class="portal portal--center is-active" href="#" data-fls-popup="popup" data-fls-popup-link="popup"
-data-fls-popup-youtube="aqz-KE-bpKQ" style="--img:url('@img/portals/2.jpg')"
-aria-label="Открыть видео: Основное">
-<span class="portal__ring" aria-hidden="true"></span>
-<span class="portal__inner" aria-hidden="true"></span>
-<span class="portal__play" aria-hidden="true"></span>
-</a>
-<a class="portal portal--right" href="#" data-fls-popup="popup" data-fls-popup-link="popup" data-fls-popup-youtube="kJQP7kiw5Fk"
-style="--img:url('@img/portals/3.jpg')" aria-label="Открыть видео: Геймплей">
-<span class="portal__ring" aria-hidden="true"></span>
-<span class="portal__inner" aria-hidden="true"></span>
-<span class="portal__play" aria-hidden="true"></span>
-</a>
-</div>
-</div>
-</div>
--->
 				<div class="portals" id="portals">
 					<div class="portals__bg" aria-hidden="true"></div>
 					<div class="portals__container">
@@ -449,7 +442,7 @@ style="--img:url('@img/portals/3.jpg')" aria-label="Открыть видео: �
 					<div class="community__container">
 						<h2 class="community__title">ДИНАМИЧНОЕ СООБЩЕСТВО</h2>
 						<div class="community__scene" aria-hidden="true">
-							<model-viewer class="community__model" src="/assets/models/dragon_gold_xtra.glb" alt="" loading="lazy" autoplay animation-name="Idle" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-44deg 103deg 0.8m" camera-target="0m 0.75m 0m"></model-viewer>
+							<model-viewer class="community__model" src="./assets/models/dragon_gold_xtra.glb" alt="" loading="lazy" autoplay animation-name="Idle" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-44deg 103deg 0.8m" camera-target="0m 0.75m 0m"></model-viewer>
 						</div>
 						<div class="community__content-wrap">
 							<div class="community__content">

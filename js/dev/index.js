@@ -4417,7 +4417,7 @@ if (document.querySelector(".features__slider")) {
     modules: [Autoplay],
     slidesPerView: "auto",
     centeredSlides: true,
-    spaceBetween: 80,
+    spaceBetween: 20,
     slidesPerView: 3,
     loop: true,
     speed: 900,
@@ -4426,7 +4426,12 @@ if (document.querySelector(".features__slider")) {
       disableOnInteraction: false,
       pauseOnMouseEnter: true
     },
-    grabCursor: true
+    grabCursor: true,
+    breakpoints: {
+      0: { slidesPerView: 1 },
+      768: { slidesPerView: 1.8, spaceBetween: 110 },
+      1440: { slidesPerView: 3, spaceBetween: 110 }
+    }
   });
 }
 if (document.querySelector(".df__slider")) {
@@ -4443,9 +4448,9 @@ if (document.querySelector(".df__slider")) {
     },
     grabCursor: true,
     breakpoints: {
-      0: { slidesPerView: 1.05, spaceBetween: 18 },
-      640: { slidesPerView: 2, spaceBetween: 24 },
-      980: { slidesPerView: 3, spaceBetween: 42 }
+      0: { slidesPerView: 1, spaceBetween: 18 },
+      768: { slidesPerView: 2, spaceBetween: 110 },
+      1600: { slidesPerView: 3, spaceBetween: 42 }
     }
   });
 }
@@ -4786,13 +4791,46 @@ class Popup {
 }
 document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () => window.flsPopup = new Popup({})) : null;
 (() => {
-  const box = document.querySelector(".lang-swap");
-  if (!box) return;
-  const current = box.dataset.current;
+  const root = document.querySelector(".mnav");
+  const btnOpen = document.querySelector(".js-mnav-open");
+  if (!root || !btnOpen) return;
+  const btnClose = root.querySelectorAll(".js-mnav-close");
+  const links = root.querySelectorAll(".mnav__item");
+  let t = null;
+  const setExpanded = (v) => btnOpen.setAttribute("aria-expanded", String(v));
+  const open = () => {
+    clearTimeout(t);
+    root.hidden = false;
+    document.body.classList.add("is-mnav-open");
+    setExpanded(true);
+  };
+  const close = () => {
+    clearTimeout(t);
+    document.body.classList.remove("is-mnav-open");
+    setExpanded(false);
+    t = setTimeout(() => {
+      if (!document.body.classList.contains("is-mnav-open")) root.hidden = true;
+    }, 180);
+  };
+  btnOpen.addEventListener("click", open);
+  btnClose.forEach((b) => b.addEventListener("click", close));
+  links.forEach((a) => a.addEventListener("click", close));
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.body.classList.contains("is-mnav-open"))
+      close();
+  });
+})();
+(() => {
+  const box = document.querySelector(".lang");
+  if (!box || box.dataset.inited) return;
+  box.dataset.inited = "1";
+  const current = (box.dataset.current || "").toLowerCase();
   if (!current) return;
-  const items = [...box.querySelectorAll(".lang-swap__item")];
+  const items = [...box.querySelectorAll(".lang__item")];
   if (items.length !== 2) return;
-  const currentEl = items.find((el) => el.dataset.lang === current);
+  const currentEl = items.find(
+    (el) => (el.dataset.lang || "").toLowerCase() === current
+  );
   const otherEl = items.find((el) => el !== currentEl);
   if (!currentEl || !otherEl) return;
   items.forEach((el) => el.classList.remove("is-current"));
@@ -4807,6 +4845,12 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
   otherEl.addEventListener("click", () => {
     box.classList.remove("is-open");
   });
+  document.addEventListener("click", (e) => {
+    if (!box.contains(e.target)) box.classList.remove("is-open");
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") box.classList.remove("is-open");
+  });
 })();
 (() => {
   const root = document.querySelector(".js-features");
@@ -4814,45 +4858,70 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
   const viewport = root.querySelector(".features__viewport");
   const track = root.querySelector(".features__track");
   const originalSlides = Array.from(root.querySelectorAll(".features__slide"));
+  if (!viewport || !track || originalSlides.length === 0) return;
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  if (prefersReduced) return;
+  if (root.__featuresInited) return;
+  root.__featuresInited = true;
   const clones1 = originalSlides.map((s) => s.cloneNode(true));
   const clones2 = originalSlides.map((s) => s.cloneNode(true));
   clones1.forEach((n) => track.appendChild(n));
   clones2.forEach((n) => track.appendChild(n));
-  let slides = Array.from(root.querySelectorAll(".features__slide"));
+  const slides = Array.from(root.querySelectorAll(".features__slide"));
   const speed = 35;
   let x = 0;
   let raf = 0;
   let last = performance.now();
   let setWidth = 0;
-  const prefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-  if (prefersReduced) return;
-  function measureSetWidth() {
-    const first = slides[0];
-    const lastOrig = slides[originalSlides.length - 1];
-    const r1 = first.getBoundingClientRect();
-    const r2 = lastOrig.getBoundingClientRect();
-    const gap = parseFloat(getComputedStyle(track).gap || "0");
-    setWidth = r2.left - r1.left + r2.width + gap;
+  let centers = [];
+  let activeIdx = -1;
+  const gapPx = () => {
+    const cs = getComputedStyle(track);
+    const g = parseFloat(cs.columnGap || cs.gap || "0");
+    return Number.isFinite(g) ? g : 0;
+  };
+  function measureSetWidthAndCenters() {
+    const g = gapPx();
+    setWidth = 0;
+    const baseCenters = [];
+    for (let i = 0; i < originalSlides.length; i++) {
+      const el = slides[i];
+      const w = el.offsetWidth;
+      const left = setWidth;
+      baseCenters.push(left + w / 2);
+      setWidth += w + g;
+    }
+    setWidth -= g;
     x = -setWidth;
     track.style.transform = `translate3d(${x}px,0,0)`;
+    const all = [];
+    for (let k = 0; k < 3; k++) {
+      for (let i = 0; i < baseCenters.length; i++) {
+        all.push(baseCenters[i] + k * setWidth);
+      }
+    }
+    centers = all;
   }
-  function setActiveByCenter() {
-    const vp = viewport.getBoundingClientRect();
-    const center = vp.left + vp.width / 2;
-    let bestIdx = 0;
+  function setActiveByCenterFast() {
+    var _a;
+    const vpW = viewport.clientWidth || 1;
+    const target = -x + vpW / 2;
+    let best = 0;
     let bestDist = Infinity;
-    slides.forEach((s, i) => {
-      const r = s.getBoundingClientRect();
-      const c = r.left + r.width / 2;
-      const d = Math.abs(center - c);
+    for (let i = 0; i < centers.length; i++) {
+      const d = Math.abs(target - centers[i]);
       if (d < bestDist) {
         bestDist = d;
-        bestIdx = i;
+        best = i;
       }
-    });
-    slides.forEach((s, i) => s.classList.toggle("is-active", i === bestIdx));
+    }
+    if (best === activeIdx) return;
+    activeIdx = best;
+    for (let i = 0; i < slides.length; i++)
+      slides[i].classList.remove("is-active");
+    (_a = slides[activeIdx]) == null ? void 0 : _a.classList.add("is-active");
   }
   function tick(now2) {
     const dt = (now2 - last) / 1e3;
@@ -4860,7 +4929,7 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
     x -= speed * dt;
     if (x <= -setWidth * 2) x += setWidth;
     track.style.transform = `translate3d(${x}px,0,0)`;
-    setActiveByCenter();
+    setActiveByCenterFast();
     raf = requestAnimationFrame(tick);
   }
   function start() {
@@ -4887,7 +4956,7 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
     const dx = cx - startX;
     x = startTranslate + dx;
     track.style.transform = `translate3d(${x}px,0,0)`;
-    setActiveByCenter();
+    setActiveByCenterFast();
   }
   function onUp() {
     if (!isDown) return;
@@ -4906,14 +4975,18 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
   viewport.addEventListener("mouseleave", () => {
     if (!isDown) start();
   });
-  requestAnimationFrame(() => {
-    measureSetWidth();
-    setActiveByCenter();
-    start();
-  });
+  let resizeRaf = 0;
   window.addEventListener("resize", () => {
-    measureSetWidth();
-    setActiveByCenter();
+    cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => {
+      measureSetWidthAndCenters();
+      setActiveByCenterFast();
+    });
+  });
+  requestAnimationFrame(() => {
+    measureSetWidthAndCenters();
+    setActiveByCenterFast();
+    start();
   });
 })();
 (() => {
@@ -4930,9 +5003,29 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
     (el) => el.dataset.clone !== "1"
   );
   const realCount = originals.length;
-  if (realCount === 0) return;
+  if (!realCount) return;
   root.querySelectorAll('.js-mods-item[data-clone="1"]').forEach((el) => el.remove());
   const items = [...originals];
+  const ensureImg = (el) => {
+    let img = el.querySelector(".mods__img");
+    if (!img) {
+      img = document.createElement("img");
+      img.className = "mods__img";
+      img.alt = "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      el.appendChild(img);
+    }
+    return img;
+  };
+  const loadImg = (el) => {
+    const img = ensureImg(el);
+    const src = el.dataset.img;
+    if (!src) return;
+    if (img.dataset.loaded === "1") return;
+    img.src = src;
+    img.dataset.loaded = "1";
+  };
   if (items.length < TARGET) {
     let k = 0;
     while (items.length < TARGET) {
@@ -4940,13 +5033,21 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
       const clone = src.cloneNode(true);
       clone.dataset.clone = "1";
       clone.dataset.srcIndex = String(k % realCount);
+      const img = clone.querySelector("img");
+      if (img) {
+        img.removeAttribute("src");
+        img.dataset.loaded = "";
+      }
       src.parentNode.insertBefore(clone, src.nextSibling);
       items.push(clone);
       k++;
     }
   }
   const count = Math.min(items.length, TARGET);
-  items.slice(0, count).forEach((el, i) => el.style.setProperty("--i", String(i)));
+  items.slice(0, count).forEach((el, i) => {
+    el.style.setProperty("--i", String(i));
+    ensureImg(el);
+  });
   orbit.style.setProperty("--count", String(count));
   let activePos = 0;
   const computeRadius = () => {
@@ -4959,6 +5060,10 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
     orbit.style.setProperty("--radius", `${Math.round(r)}px`);
   };
   const realIndexFromPos = (pos) => pos % realCount;
+  const warmAround = (pos) => {
+    const idxs = [pos, (pos - 1 + count) % count, (pos + 1) % count];
+    idxs.forEach((i) => loadImg(items[i]));
+  };
   const render = () => {
     const step = 360 / count;
     orbit.style.setProperty("--rot", `${-activePos * step}deg`);
@@ -4968,6 +5073,7 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
     const ri = realIndexFromPos(activePos);
     subtitle && (subtitle.textContent = originals[ri].dataset.title || "");
     desc && (desc.textContent = originals[ri].dataset.desc || "");
+    warmAround(activePos);
   };
   const setActive = (pos) => {
     activePos = (pos + count) % count;
@@ -4981,74 +5087,6 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
   computeRadius();
   window.addEventListener("resize", computeRadius);
   setActive(0);
-})();
-(() => {
-  const root = document.querySelector(".js-stages");
-  if (!root) return;
-  const dataEls = [...root.querySelectorAll(".js-data .js-stage")];
-  const stepsBox = root.querySelector(".js-steps");
-  const img = root.querySelector(".stages__img");
-  const caption = root.querySelector(".js-caption");
-  if (!stepsBox || !img || !caption || dataEls.length === 0) return;
-  const stages = dataEls.map((el) => ({
-    title: el.dataset.title || "",
-    sub: el.dataset.sub || "",
-    img: el.dataset.img || ""
-  }));
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let active = 0;
-  let changeT = null;
-  const renderSteps = () => {
-    stepsBox.innerHTML = "";
-    stages.forEach((s, idx) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "stage-step" + (idx === active ? " is-active" : "");
-      btn.dataset.index = String(idx);
-      btn.innerHTML = `
-        <span class="stage-step__inner">
-          <span class="stage-step__title">${s.title}</span><br>
-          <span class="stage-step__sub">${s.sub}</span>
-        </span>
-      `;
-      stepsBox.appendChild(btn);
-    });
-  };
-  const setCaption = (s) => {
-    caption.innerHTML = `
-      <span class="stages__cap-title">${s.title}</span> <span class="stages__cap-sub">${s.sub}</span>
-    `;
-  };
-  const setMedia = (idx, withFade = true) => {
-    const s = stages[idx];
-    setCaption(s);
-    if (!withFade || reduceMotion.matches) {
-      img.style.backgroundImage = `url("${s.img}")`;
-      return;
-    }
-    img.classList.add("is-changing");
-    window.clearTimeout(changeT);
-    changeT = window.setTimeout(() => {
-      img.style.backgroundImage = `url("${s.img}")`;
-      img.classList.remove("is-changing");
-    }, 180);
-  };
-  const setActive = (idx) => {
-    const next = Math.max(0, Math.min(idx, stages.length - 1));
-    if (next === active) return;
-    active = next;
-    stepsBox.querySelectorAll(".stage-step").forEach((b) => {
-      b.classList.toggle("is-active", Number(b.dataset.index) === active);
-    });
-    setMedia(active, true);
-  };
-  stepsBox.addEventListener("click", (e) => {
-    const btn = e.target.closest(".stage-step");
-    if (!btn || !stepsBox.contains(btn)) return;
-    setActive(Number(btn.dataset.index));
-  });
-  renderSteps();
-  setMedia(active, false);
 })();
 (() => {
   const viewport = document.querySelector(".js-df-viewport");
@@ -5067,101 +5105,164 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
   let isDown = false;
   let startX = 0;
   let startLeft = 0;
-  track.addEventListener("mousedown", (e) => {
+  const getX = (e) => e.clientX;
+  const onDown = (e) => {
+    var _a;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
     isDown = true;
-    startX = e.pageX;
+    startX = getX(e);
     startLeft = track.scrollLeft;
     track.classList.add("is-dragging");
-  });
-  window.addEventListener("mouseup", () => {
+    (_a = track.setPointerCapture) == null ? void 0 : _a.call(track, e.pointerId);
+    e.preventDefault();
+  };
+  const onMove = (e) => {
+    if (!isDown) return;
+    const dx = getX(e) - startX;
+    track.scrollLeft = startLeft - dx;
+    e.preventDefault();
+  };
+  const endDrag = (e) => {
+    var _a;
+    if (!isDown) return;
+    isDown = false;
+    track.classList.remove("is-dragging");
+    try {
+      (_a = track.releasePointerCapture) == null ? void 0 : _a.call(track, e.pointerId);
+    } catch (_) {
+    }
+  };
+  track.addEventListener("pointerdown", onDown, { passive: false });
+  track.addEventListener("pointermove", onMove, { passive: false });
+  track.addEventListener("pointerup", endDrag);
+  track.addEventListener("pointercancel", endDrag);
+  window.addEventListener("blur", () => {
     isDown = false;
     track.classList.remove("is-dragging");
   });
-  window.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    const dx = e.pageX - startX;
-    track.scrollLeft = startLeft - dx;
+})();
+(() => {
+  const onReady = (fn) => {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn, { once: true });
+    } else {
+      fn();
+    }
+  };
+  const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
+  const initStepper = ({
+    root,
+    stepsBox,
+    stepBtnSelector,
+    mediaSelector,
+    captionSelector,
+    activeClass = "is-active"
+  }) => {
+    if (!root || !stepsBox) return;
+    if (root.__stepperInited) return;
+    root.__stepperInited = true;
+    const btns = [...stepsBox.querySelectorAll(stepBtnSelector)];
+    const media = [...root.querySelectorAll(mediaSelector)];
+    const caps = [...root.querySelectorAll(captionSelector)];
+    if (!btns.length || !media.length || !caps.length) return;
+    const size = Math.min(btns.length, media.length, caps.length);
+    const findActive = (arr) => arr.findIndex((x) => x.classList.contains(activeClass));
+    let active = Math.max(
+      findActive(btns),
+      findActive(media),
+      findActive(caps)
+    );
+    if (active < 0) active = 0;
+    active = clamp(active, 0, size - 1);
+    const apply = (idx) => {
+      active = clamp(idx, 0, size - 1);
+      for (let i = 0; i < btns.length; i++) {
+        const on = i === active;
+        btns[i].classList.toggle(activeClass, on);
+        btns[i].setAttribute("aria-selected", on ? "true" : "false");
+      }
+      for (let i = 0; i < media.length; i++) {
+        media[i].classList.toggle(activeClass, i === active);
+      }
+      for (let i = 0; i < caps.length; i++) {
+        caps[i].classList.toggle(activeClass, i === active);
+      }
+      root.dispatchEvent(
+        new CustomEvent("stepper:change", { detail: { index: active } })
+      );
+    };
+    apply(active);
+    stepsBox.addEventListener("click", (e) => {
+      const btn = e.target.closest(stepBtnSelector);
+      if (!btn || !stepsBox.contains(btn)) return;
+      const idx = btns.indexOf(btn);
+      if (idx < 0 || idx === active) return;
+      apply(idx);
+    });
+    stepsBox.addEventListener("keydown", (e) => {
+      var _a;
+      const key = e.key;
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(key)) return;
+      const cur = btns.indexOf(document.activeElement);
+      if (cur < 0) return;
+      e.preventDefault();
+      let next = cur;
+      if (key === "ArrowLeft") next = cur - 1;
+      if (key === "ArrowRight") next = cur + 1;
+      if (key === "Home") next = 0;
+      if (key === "End") next = size - 1;
+      next = clamp(next, 0, size - 1);
+      (_a = btns[next]) == null ? void 0 : _a.focus();
+      apply(next);
+    });
+  };
+  onReady(() => {
+    const stagesRoot = document.querySelector(".js-stages");
+    if (stagesRoot) {
+      initStepper({
+        root: stagesRoot,
+        stepsBox: stagesRoot.querySelector(".js-steps"),
+        stepBtnSelector: ".stage-step",
+        mediaSelector: ".stages__img .stepper__media-photo",
+        captionSelector: ".stages__caption-text .stepper__caption-item"
+      });
+    }
+    const raidsRoot = document.querySelector(".js-raids");
+    if (raidsRoot) {
+      initStepper({
+        root: raidsRoot,
+        stepsBox: raidsRoot.querySelector(".js-raids-steps"),
+        stepBtnSelector: ".raid-step",
+        mediaSelector: ".raids__img-wrap .stepper__media-photo",
+        captionSelector: ".js-raids-caption .stepper__caption-item"
+      });
+    }
   });
 })();
 (() => {
   const root = document.querySelector(".js-raids");
   if (!root) return;
-  const dataEls = [...root.querySelectorAll(".js-raids-data .js-raid")];
-  const stepsBox = root.querySelector(".js-raids-steps");
-  const img = root.querySelector(".js-raids-img");
-  const textBox = root.querySelector(".js-raids-caption");
-  if (!stepsBox || !img || !textBox || dataEls.length === 0) return;
-  const raids = dataEls.map((el) => {
-    const descNode = el.querySelector(".js-desc");
-    const name = (el.dataset.name || "").trim();
-    const meta = (el.dataset.meta || "").trim();
-    return {
-      name,
-      meta,
-      img: el.dataset.img || "",
-      alt: (el.dataset.alt || `${name}${meta ? `, ${meta}` : ""}`).trim(),
-      desc: ((descNode == null ? void 0 : descNode.textContent) || "").trim()
-    };
-  });
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let active = 0;
-  let t = null;
-  const renderSteps = () => {
-    stepsBox.innerHTML = "";
-    raids.forEach((r, idx) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "raid-step" + (idx === active ? " is-active" : "");
-      btn.dataset.index = String(idx);
-      btn.innerHTML = `
-        <span class="raid-step__inner">
-          <span class="raid-step__name">${r.name}</span>
-          <span class="raid-step__meta">${r.meta}</span>
-        </span>
-      `;
-      stepsBox.appendChild(btn);
-    });
-  };
-  const setText = (idx) => {
-    textBox.textContent = raids[idx].desc;
-  };
-  const setImage = (idx, withFade = true) => {
-    const r = raids[idx];
-    img.alt = r.alt;
-    if (!withFade || reduceMotion.matches) {
-      img.src = r.img;
-      return;
+  const media = root.querySelector(".raids__media");
+  const btn = root.querySelector(".js-raids-readmore");
+  if (!media || !btn) return;
+  const more = btn.querySelector(".raids__readmore-more");
+  const less = btn.querySelector(".raids__readmore-less");
+  const MQ = window.matchMedia("(max-width: 768px)");
+  const setState = (expanded) => {
+    media.classList.toggle("is-expanded", expanded);
+    btn.setAttribute("aria-expanded", String(expanded));
+    if (more && less) {
+      more.hidden = expanded;
+      less.hidden = !expanded;
     }
-    img.classList.add("is-changing");
-    window.clearTimeout(t);
-    t = window.setTimeout(() => {
-      const done = () => {
-        img.classList.remove("is-changing");
-        img.removeEventListener("load", done);
-        img.removeEventListener("error", done);
-      };
-      img.addEventListener("load", done);
-      img.addEventListener("error", done);
-      img.src = r.img;
-      if (img.complete) done();
-    }, 180);
   };
-  const setActive = (idx) => {
-    const next = Math.max(0, Math.min(idx, raids.length - 1));
-    if (next === active) return;
-    active = next;
-    stepsBox.querySelectorAll(".raid-step").forEach((b) => {
-      b.classList.toggle("is-active", Number(b.dataset.index) === active);
-    });
-    setText(active);
-    setImage(active, true);
-  };
-  stepsBox.addEventListener("click", (e) => {
-    const btn = e.target.closest(".raid-step");
-    if (!btn || !stepsBox.contains(btn)) return;
-    setActive(Number(btn.dataset.index));
+  btn.addEventListener("click", () => {
+    setState(!media.classList.contains("is-expanded"));
   });
-  renderSteps();
-  setText(active);
-  setImage(active, false);
+  root.addEventListener("stepper:change", () => setState(false));
+  const sync = () => {
+    if (!MQ.matches) setState(false);
+  };
+  MQ.addEventListener ? MQ.addEventListener("change", sync) : MQ.addListener(sync);
+  sync();
 })();

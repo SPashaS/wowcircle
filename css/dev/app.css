@@ -219,7 +219,6 @@ h2 {
   height: 15.25rem;
 }
 
-/* ===================== COMMON (ADD AT THE END) ===================== */
 .stepper__media-photo {
   opacity: 0;
   pointer-events: none;
@@ -342,7 +341,7 @@ body {
    MASK / SECTION TRANSITIONS
    ========================= */
 /* ---------- overlap helpers ---------- */
-@media (max-width: 100.06125em) {
+@media (max-width: 99.99875em) {
   .btn {
     width: 14rem;
     height: 3.0625rem;
@@ -379,7 +378,7 @@ body {
     background-image: url("../assets/img/ui/tab/bg.webp");
   } 
 }
-@media (max-width: 48.06125em) {
+@media (max-width: 47.99875em) {
   h2 {
     font-size: 1.25rem;
     font-weight: 800;

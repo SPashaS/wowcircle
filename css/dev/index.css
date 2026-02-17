@@ -123,7 +123,7 @@
 .mnav__nav {
   min-height: 0;
   background-image: url("../assets/img/ui/bg-menu-2.webp");
-  background-size: contain;
+  background-size: 100%;
   background-position: center top;
   background-repeat: repeat-y;
   overflow-y: auto;
@@ -333,7 +333,6 @@ body.is-mnav-open .mnav__panel {
 .features {
   position: relative;
   padding: 3.125rem 0 16.25rem;
-  /* ==== DECOR ==== */
 }
 .features__bg {
   position: absolute;
@@ -833,11 +832,11 @@ body.is-mnav-open .mnav__panel {
   position: relative;
   z-index: var(--z-content);
   display: grid;
-  grid-template-columns: 34.75rem 67.5rem;
+  grid-template-columns: 21.6875rem 67.5rem;
   gap: 3.75rem;
   align-items: center;
   left: 50%;
-  transform: translateX(-62%);
+  transform: translateX(-48%);
 }
 .raids__media {
   padding: 1.1875rem;
@@ -884,16 +883,16 @@ body.is-mnav-open .mnav__panel {
   height: 10.9375rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   background: url("../assets/img/ui/stages-btn.webp") 0 0/cover no-repeat;
 }
 .raid-step.is-active {
-  width: 34.75rem;
-  height: 14.75rem;
-  background-image: url("../assets/img/ui/raids-btn-active.webp");
+  background: url("../assets/img/ui/stages-btn-active.webp") 0 0/cover no-repeat;
   cursor: default;
+  width: 21.6875rem;
+  height: 14.0625rem;
   filter: drop-shadow(0 0 1.25rem rgba(235, 201, 172, 0.9));
 }
 .raid-step__inner {
@@ -901,17 +900,16 @@ body.is-mnav-open .mnav__panel {
   width: 90%;
   position: relative;
   padding: 1.125rem 2.8125rem;
-  text-align: right;
+  text-align: center;
   font-weight: var(--fw-700);
-  font-size: 0.875rem;
   letter-spacing: var(--ls-tight);
   color: var(--card-text-color);
 }
 .is-active .raid-step__inner {
   width: 70%;
-  padding: 1.125rem 4.375rem;
+  padding: 1.125rem 0.5625rem;
   font-weight: var(--fw-800);
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   text-transform: uppercase;
   color: var(--dark-text-color);
 }
@@ -1196,6 +1194,7 @@ body.is-mnav-open .mnav__panel {
   filter: drop-shadow(0 0 1.25rem rgba(235, 201, 172, 0.4));
 }
 .cta__agree {
+  padding-left: 0.625rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -1312,7 +1311,7 @@ body::after {
   display: block;
 }
 
-@media (max-width: 100.06125em){
+@media (max-width: 99.99875em){
   .topnav__list {
     justify-content: center;
   }
@@ -1347,29 +1346,11 @@ body::after {
     width: 81.25rem;
     height: 81.25rem;
   }
+  .features {
+    padding-bottom: 8.125rem;
+  }
   .features__decor {
     width: 126%;
-  }
-  .mods__container {
-    padding-left: 4.375rem;
-    align-items: start;
-  }
-  .mods__content {
-    padding-top: 2.1875rem;
-  }
-  .mods__stage {
-    transform: translateX(-30.375rem);
-  }
-  .mods__orbit {
-    --cx: 45%;
-    --cy: 121%;
-  }
-  .mods__portal {
-    width: 24.6875rem;
-  }
-  .mods__nav {
-    right: 4.125rem;
-    bottom: 1rem;
   }
   .stages__wrapper-body {
     grid-template-columns: 1fr;
@@ -1525,6 +1506,11 @@ body::after {
   .portal {
     width: 27.125rem;
   }
+  .community__content-wrap {
+    display: block;
+    position: relative;
+    left: 50%;
+  }
   .community__content {
     width: 22.5rem;
   }
@@ -1539,6 +1525,9 @@ body::after {
   .soc-btn {
     width: 3.75rem;
     height: 3.75rem;
+  }
+  .cta__agree {
+    padding-left: 0;
   }
   .cta__agree, .cta__submit {
     grid-column: 1/-1;
@@ -1557,6 +1546,30 @@ body::after {
   }
 }
 
+@media (max-width: 90em){
+  .mods__container {
+    padding-left: 4.375rem;
+    align-items: start;
+  }
+  .mods__content {
+    padding-top: 2.1875rem;
+  }
+  .mods__stage {
+    transform: translateX(-30.375rem);
+  }
+  .mods__orbit {
+    --cx: 45%;
+    --cy: 121%;
+  }
+  .mods__portal {
+    width: 24.6875rem;
+  }
+  .mods__nav {
+    right: 4.125rem;
+    bottom: 1rem;
+  }
+}
+
 @media (max-width: 75em){
   .raids__media {
     width: 37.1875rem;
@@ -1568,7 +1581,7 @@ body::after {
   }
 }
 
-@media (max-width: 48.06125em){
+@media (max-width: 47.99875em){
   .header__nav {
     display: none;
   }
@@ -1881,15 +1894,14 @@ body::after {
     gap: 1.5625rem;
   }
   .community__content-wrap {
+    display: flex;
+    left: 0;
     padding-top: 3.125rem;
     justify-content: center;
   }
   .community__text {
     font-size: 1rem;
     text-align: center;
-  }
-  .community__social {
-    padding: 0 1.875rem;
   }
   .cta {
     padding: 2.5rem 0;

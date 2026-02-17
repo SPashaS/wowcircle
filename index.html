@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js?v=1771200495335"></script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js?v=1771288357404"></script>
 		<title>Home Page</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1771200495335"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1771200495335">
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1771200495335">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1771200495335">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1771288357404"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1771288357404">
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1771288357404">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1771288357404">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -34,7 +34,6 @@
 							<img alt="WOW Circle" src="./assets/img/logo.webp">
 						</picture>
 					</div>
-					<!-- ✅ Бургер-кнопка (видна только на мобиле) -->
 					<button class="header__burger js-mnav-open" type="button" aria-label="Открыть меню" aria-controls="mnav" aria-expanded="false">
 						<svg width="30" height="24" viewbox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 							<g filter="url(#filter0_d_573_1587)">
@@ -79,7 +78,6 @@
 							</li>
 						</ul>
 					</nav>
-					<!-- ✅ Мобильное меню -->
 					<div class="mnav" id="mnav" hidden>
 						<div class="mnav__overlay js-mnav-close" aria-hidden="true"></div>
 						<aside class="mnav__panel" role="dialog" aria-modal="true" aria-label="Меню">
@@ -134,7 +132,14 @@
 					</div>
 					<section class="hero">
 						<div class="hero__scene" aria-hidden="true">
-							<model-viewer id="yseraModel" class="hero__model" src="./assets/models/yseradragon/yseradragon.gltf" loading="lazy" autoplay animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="1" shadow-intensity="0.6" tone-mapping="neutral" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-246deg 112deg 1.5m" camera-target="2m 1.15m 1m"></model-viewer>
+							<model-viewer id="yseraModel" class="hero__model" src="./files/models/yseradragon/yseradragon.gltf" loading="lazy" autoplay animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="1" shadow-intensity="0.6" tone-mapping="neutral" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="-246deg 112deg 1.5m" camera-target="25m -4.85m -16m"></model-viewer>
+							<div class="hero__img img-model">
+								<picture>
+									<source media="(max-width: 600px)" srcset="./assets/img/yseradragon-600.webp" type="image/webp">
+									<source media="(max-width: 1200px)" srcset="./assets/img/yseradragon-1200.webp" type="image/webp">
+									<img alt="Image" src="./assets/img/yseradragon.webp">
+								</picture>
+							</div>
 						</div>
 						<div class="hero__content">
 							<h1 class="hero__title">Ваша бесконечная вселенная</h1>
@@ -285,6 +290,35 @@
 										<img class="mods__img" alt="" loading="lazy" decoding="async" src="./assets/img/mods/6.webp">
 									</picture>
 								</div>
+								<!--
+<div class="mods__portal js-mods-item" data-title="PVE-СПЕКТАТОР"
+data-desc="Просмотр игр на аренах PVE в режиме LIVE." style="--img:url('@img/mods/1.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="МЕНЮ .MENU"
+data-desc="Интерактивное меню управления сервером." style="--img:url('@img/mods/2.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="PVP СПЕКТАТОР"
+data-desc="Наблюдай PVP-бои в реальном времени." style="--img:url('@img/mods/3.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="XP RATE" data-desc="Меняй множитель опыта на лету."
+style="--img:url('@img/mods/4.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="UI МОДЫ" data-desc="Дополнительные улучшения интерфейса."
+style="--img:url('@img/mods/5.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="КРОССФРАКЦИЯ"
+data-desc="Удобная игра с друзьями вне зависимости от фракции." style="--img:url('@img/mods/6.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="АУКЦИОН"
+data-desc="Улучшенный поиск и фильтры для торговли." style="--img:url('@img/mods/7.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="ТЕЛЕПОРТЫ"
+data-desc="Быстрые перемещения по ключевым точкам мира." style="--img:url('@img/mods/8.jpg');">
+</div>
+<div class="mods__portal js-mods-item" data-title="КАСТОМ-КВЕСТЫ"
+data-desc="Дополнительный контент и награды." style="--img:url('@img/mods/9.jpg');">
+</div>
+-->
 							</div>
 						</div>
 						<div class="mods__nav">
@@ -497,6 +531,7 @@
 											</a>
 										</article>
 									</div>
+									<div class="swiper-pagination"></div>
 								</div>
 							</div>
 						</div>
@@ -646,14 +681,20 @@
 								<h2 class="community__title line">ДИНАМИЧНОЕ СООБЩЕСТВО</h2>
 							</div>
 							<div class="community__scene" aria-hidden="true">
-								<model-viewer class="community__model" src="./assets/models/iridikron/iridikron.gltf" alt="" loading="lazy" autoplay animation-name="Stand (ID 0 variation 1)" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="46deg 88deg 1.8m" camera-target="0.3m 3.75m 0.5m"></model-viewer>
-
+								<model-viewer class="community__model" src="./files/models/iridikron/iridikron.gltf" alt="" loading="lazy" autoplay animation-name="Stand (ID 0 variation 1)" environment-image="neutral" exposure="2" shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap="" camera-orbit="46deg 88deg 1.8m" camera-target="0.3m 3.75m 0.5m"></model-viewer>
+								<div class="community__img img-model">
+									<picture>
+										<source media="(max-width: 600px)" srcset="./assets/img/iridikron-600.webp" type="image/webp">
+										<source media="(max-width: 1200px)" srcset="./assets/img/iridikron-1200.webp" type="image/webp">
+										<img alt="Image" src="./assets/img/iridikron.webp">
+									</picture>
+								</div>
 							</div>
 							<div class="community__content-wrap">
 								<div class="community__content">
 									<p class="community__text">
-										Присоединяйтесь к одному
-              из процветающих галактических хабов сообщества, где вы ипутешественники-единомышленники сможете открыть
+										Присоединяйтесь к одному из процветающих галактических хабов сообщества, где вы и путешественники
+              единомышленники сможете открыть
               для себя новые горизонты.
 									</p>
 									<div class="community__social">

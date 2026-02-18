@@ -474,19 +474,24 @@ body.is-mnav-open .mnav__panel {
   padding-top: 16.25rem;
 }
 .mods__title {
-  margin-bottom: 0.4375rem;
   position: relative;
   z-index: 100;
+  margin-bottom: 0.4375rem;
 }
 .mods__subtitle {
+  font-size: 1.875rem;
+  line-height: normal;
   font-weight: var(--fw-800);
-  font-size: 1.25rem;
+  letter-spacing: 0.15rem;
   text-transform: uppercase;
   margin-bottom: 0.4375rem;
 }
 .mods__desc {
-  font-weight: var(--fw-700);
+  font-size: 1.25rem;
+  line-height: normal;
+  font-weight: var(--fw-800);
   letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
 }
 .mods__stage {
   position: relative;
@@ -1015,7 +1020,7 @@ body.is-mnav-open .mnav__panel {
 
 .community {
   position: relative;
-  padding: 8.125rem 0 62.5rem;
+  padding: 8.125rem 0 18.125rem;
   color: var(--text-color);
 }
 .community__container {
@@ -1660,14 +1665,18 @@ body::after {
   .mods__content {
     padding-top: 4.6875rem;
   }
+  .mods__title {
+    font-size: 1.5rem;
+  }
   .mods__subtitle {
     font-weight: var(--fw-700);
-    font-size: 1.125rem;
+    font-size: 1.1875rem;
     letter-spacing: var(--ls-tight);
     text-transform: none;
   }
   .mods__desc {
-    font-size: 0.8125rem;
+    font-size: 1.0625rem;
+    text-transform: none;
   }
   .mods__stage {
     width: 56.25rem;
@@ -1874,7 +1883,7 @@ body::after {
     z-index: 1;
   }
   .community {
-    padding: 8.125rem 0 17.1875rem;
+    padding: 8.125rem 0 5.625rem;
   }
   .community__model {
     display: none;
@@ -1889,14 +1898,12 @@ body::after {
     mask-image: linear-gradient(to bottom, #000 0rem, #000 calc(100% - var(--mask-fade)), transparent 100%);
   }
   .community__content {
-    display: flex;
-    flex-direction: column-reverse;
     gap: 1.5625rem;
   }
   .community__content-wrap {
     display: flex;
     left: 0;
-    padding-top: 3.125rem;
+    padding-top: 11.875rem;
     justify-content: center;
   }
   .community__text {
@@ -1904,7 +1911,7 @@ body::after {
     text-align: center;
   }
   .cta {
-    padding: 2.5rem 0;
+    padding: 0 2.5rem 0;
   }
   .cta__title {
     padding-bottom: 1.5625rem;

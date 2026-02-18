@@ -5542,9 +5542,10 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
     const idxs = [pos, (pos - 1 + count) % count, (pos + 1) % count];
     idxs.forEach((i) => loadImg(items[i]));
   };
+  const START_DEG = -125;
   const render = () => {
     const step = 360 / count;
-    orbit.style.setProperty("--rot", `${-activePos * step}deg`);
+    orbit.style.setProperty("--rot", `${START_DEG - activePos * step}deg`);
     items.slice(0, count).forEach((el, idx) => {
       el.classList.toggle("is-active", idx === activePos);
     });
@@ -5557,9 +5558,6 @@ document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () 
     activePos = (pos + count) % count;
     render();
   };
-  items.slice(0, count).forEach((el, pos) => {
-    el.addEventListener("click", () => setActive(pos));
-  });
   prev == null ? void 0 : prev.addEventListener("click", () => setActive(activePos - 1));
   next == null ? void 0 : next.addEventListener("click", () => setActive(activePos + 1));
   computeRadius();

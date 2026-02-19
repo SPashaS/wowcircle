@@ -433,7 +433,8 @@ body {
     filter: drop-shadow(0 0 0.625rem rgba(235, 201, 172, 0.9));
   }
   .logo:hover {
-    filter: drop-shadow(0 0 0.625rem rgba(235, 201, 172, 0.9));
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.625rem rgba(46, 37, 29, 0.9));
   }
   .topnav__link:hover,
   .footer__link:hover {

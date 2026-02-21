@@ -12,13 +12,13 @@
 		crossorigin="anonymous">
 	<link rel="preload" href="./assets/fonts/EBGaramond-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 	<link rel="shortcut icon" href="./assets/img/favicon.ico">
-	<link rel="modulepreload" href="./js/model-viewer.min.js">
-	<script type="module" src="./js/model-viewer.min.js"></script>
+	<link rel="modulepreload" href="./files/model-viewer.min.js?v=1771636277681">
+	<script type="module" src="./files/model-viewer.min.js?v=1771636277681"></script>
 	<title>Home Page</title>
-	<script type="module" crossorigin="" src="./js/index.min.js?v=1771503168952"></script>
-	<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1771503168952">
-	<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1771503168952">
-	<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1771503168952">
+	<script type="module" crossorigin="" src="./js/index.min.js?v=1771636277681"></script>
+	<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1771636277681">
+	<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1771636277681">
+	<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1771636277681">
 </head>
 
 <body>
@@ -43,31 +43,6 @@
 				<div class="header__logo logo" aria-label="На главную">
 					<img alt="WOW Circle" src="./assets/img/logo.webp">
 				</div>
-				<button class="header__burger js-mnav-open" type="button" aria-label="Открыть меню" aria-controls="mnav"
-					aria-expanded="false">
-					<svg width="30" height="24" viewbox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-						aria-hidden="true">
-						<g filter="url(#filter0_d_573_1587)">
-							<path d="M4.75 4.75H8.5M24.75 4.75H13.5M24.75 18.75H21M4.75 18.75H16M4.75 11.75H24.75" stroke="white"
-								stroke-width="1.5" stroke-linecap="round" shape-rendering="crispEdges"></path>
-						</g>
-						<defs>
-							<filter id="filter0_d_573_1587" x="0" y="0" width="29.5" height="23.5" filterunits="userSpaceOnUse"
-								color-interpolation-filters="sRGB">
-								<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-								<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-									result="hardAlpha"></feColorMatrix>
-								<feOffset></feOffset>
-								<feGaussianBlur stddeviation="2"></feGaussianBlur>
-								<feComposite in2="hardAlpha" operator="out"></feComposite>
-								<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0.0878804 0 0 0 0 0.629808 0 0 0 0.7 0">
-								</feColorMatrix>
-								<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_573_1587"></feBlend>
-								<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_573_1587" result="shape"></feBlend>
-							</filter>
-						</defs>
-					</svg>
-				</button>
 				<nav class="header__nav topnav" aria-label="Главное меню">
 					<ul class="topnav__list">
 						<li class="topnav__item">
@@ -89,53 +64,55 @@
 						</li>
 					</ul>
 				</nav>
+				<button class="header__burger js-mnav-open" type="button" aria-label="Открыть меню" aria-controls="mnav"
+					aria-expanded="false">
+					<span class="header__burger-lines" aria-hidden="true">
+						<span></span>
+					</span>
+				</button>
 				<div class="mnav" id="mnav" hidden>
-					<div class="mnav__overlay js-mnav-close" aria-hidden="true"></div>
-					<aside class="mnav__panel" role="dialog" aria-modal="true" aria-label="Меню">
-						<button class="mnav__exit js-mnav-close" type="button" aria-label="Закрыть меню">
-							<span class="mnav__exit-ico" aria-hidden="true">←</span>
-							<span class="mnav__exit-text">Выход</span>
-						</button>
-						<nav class="mnav__nav" aria-label="Мобильное меню">
-							<a class="mnav__item" href="#features">Мир</a>
-							<a class="mnav__item" href="#mods">Модификации</a>
-							<a class="mnav__item" href="#stages">Этапы открытия</a>
-							<a class="mnav__item" href="#dragonflight">Особенности</a>
-							<a class="mnav__item" href="#raids">Рейты</a>
-						</nav>
-						<div class="mnav__footer">
-							<div class="mnav__social">
-								<a class="mnav__social-btn" href="#" aria-label="Twitch">
-									<span aria-hidden="true">
-										<img
-											src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2022%2022'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M1.1%200C0.808262%200%200.528473%200.105773%200.322183%200.294051C0.115893%200.482328%200%200.737688%200%201.00395V16.8374C0%2017.1037%200.115893%2017.359%200.322183%2017.5473C0.528473%2017.7356%200.808262%2017.8413%201.1%2017.8413H6.13067V21.2213C6.13114%2021.3754%206.18157%2021.526%206.27561%2021.654C6.36965%2021.782%206.5031%2021.8818%206.65914%2021.9407C6.81517%2021.9996%206.98683%2022.0151%207.15248%2021.9851C7.31813%2021.9552%207.47036%2021.8811%207.59%2021.7724L11.8983%2017.8413H17.5731C17.8648%2017.8411%2018.1444%2017.7352%2018.3504%2017.5469L21.6773%2014.5105C21.8837%2014.3224%2021.9997%2014.0672%2022%2013.801V1.00395C22%200.737688%2021.8841%200.482328%2021.6778%200.294051C21.4715%200.105773%2021.1917%200%2020.9%200H1.1ZM10.0454%205.80061C10.0454%205.57872%209.94887%205.36593%209.77696%205.20903C9.60505%205.05213%209.37189%204.96398%209.12878%204.96398C8.88566%204.96398%208.65251%205.05213%208.4806%205.20903C8.30869%205.36593%208.21211%205.57872%208.21211%205.80061V10.566C8.21211%2010.7879%208.30869%2011.0007%208.4806%2011.1576C8.65251%2011.3145%208.88566%2011.4027%209.12878%2011.4027C9.37189%2011.4027%209.60505%2011.3145%209.77696%2011.1576C9.94887%2011.0007%2010.0454%2010.7879%2010.0454%2010.566V5.80061ZM16.1761%205.80061C16.1761%205.57872%2016.0795%205.36593%2015.9076%205.20903C15.7357%205.05213%2015.5026%204.96398%2015.2594%204.96398C15.0163%204.96398%2014.7832%205.05213%2014.6113%205.20903C14.4394%205.36593%2014.3428%205.57872%2014.3428%205.80061V10.566C14.3428%2010.7879%2014.4394%2011.0007%2014.6113%2011.1576C14.7832%2011.3145%2015.0163%2011.4027%2015.2594%2011.4027C15.5026%2011.4027%2015.7357%2011.3145%2015.9076%2011.1576C16.0795%2011.0007%2016.1761%2010.7879%2016.1761%2010.566V5.80061Z'%20fill='white'/%3e%3c/svg%3e"
-											alt="Image">
-									</span>
-								</a>
-								<a class="mnav__social-btn" href="#" aria-label="YouTube">
-									<span aria-hidden="true">
-										<img
-											src="data:image/svg+xml,%3csvg%20width='24'%20height='18'%20viewBox='0%200%2024%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M9.6%2012.8571L15.828%209L9.6%205.14286V12.8571ZM23.472%202.79C23.628%203.39429%2023.736%204.20429%2023.808%205.23286C23.892%206.26143%2023.928%207.14857%2023.928%207.92L24%209C24%2011.8157%2023.808%2013.8857%2023.472%2015.21C23.172%2016.3671%2022.476%2017.1129%2021.396%2017.4343C20.832%2017.6014%2019.8%2017.7171%2018.216%2017.7943C16.656%2017.8843%2015.228%2017.9229%2013.908%2017.9229L12%2018C6.972%2018%203.84%2017.7943%202.604%2017.4343C1.524%2017.1129%200.828%2016.3671%200.528%2015.21C0.372%2014.6057%200.264%2013.7957%200.192%2012.7671C0.108%2011.7386%200.0719999%2010.8514%200.0719999%2010.08L0%209C0%206.18429%200.192%204.11429%200.528%202.79C0.828%201.63286%201.524%200.887143%202.604%200.565714C3.168%200.398571%204.2%200.282857%205.784%200.205714C7.344%200.115714%208.772%200.0771428%2010.092%200.0771428L12%200C17.028%200%2020.16%200.205714%2021.396%200.565714C22.476%200.887143%2023.172%201.63286%2023.472%202.79Z'%20fill='white'/%3e%3c/svg%3e"
-											alt="Image">
-									</span>
-								</a>
-								<a class="mnav__social-btn" href="#" aria-label="Discord">
-									<span aria-hidden="true">
-										<img
-											src="data:image/svg+xml,%3csvg%20width='26'%20height='20'%20viewBox='0%200%2026%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M21.9993%201.66212C20.3526%200.887325%2018.5697%200.324972%2016.7125%205.74827e-05C16.6962%20-0.000468134%2016.68%200.00261616%2016.665%200.00909357C16.65%200.015571%2016.6367%200.0252842%2016.6258%200.0375479C16.4029%200.44994%2016.1429%200.987299%2015.9696%201.39969C13.9997%201.09977%2011.9964%201.09977%2010.0266%201.39969C9.85324%200.974802%209.59323%200.44994%209.35798%200.0375479C9.3456%200.0125545%209.30846%205.74827e-05%209.27131%205.74827e-05C7.41412%200.324972%205.6436%200.887325%203.9845%201.66212C3.97212%201.66212%203.95974%201.67462%203.94736%201.68712C0.579648%206.77328%20-0.348949%2011.722%200.109159%2016.6207C0.109159%2016.6457%200.12154%2016.6707%200.146302%2016.6832C2.37493%2018.3328%204.5169%2019.3325%206.6341%2019.9948C6.67124%2020.0073%206.70839%2019.9948%206.72077%2019.9698C7.21602%2019.2825%207.66175%2018.5577%208.04557%2017.7954C8.07033%2017.7454%208.04557%2017.6954%207.99604%2017.6829C7.29031%2017.408%206.62172%2017.0831%205.96551%2016.7082C5.91599%2016.6832%205.91598%2016.6082%205.95313%2016.5707C6.08932%2016.4707%206.22552%2016.3583%206.36171%2016.2583C6.38647%2016.2333%206.42362%2016.2333%206.44838%2016.2458C10.7075%2018.2078%2015.301%2018.2078%2019.5106%2016.2458C19.5354%2016.2333%2019.5725%2016.2333%2019.5973%2016.2583C19.7335%2016.3708%2019.8697%2016.4707%2020.0059%2016.5832C20.0554%2016.6207%2020.0554%2016.6957%2019.9935%2016.7207C19.3497%2017.1081%2018.6687%2017.4205%2017.963%2017.6954C17.9135%2017.7079%2017.9011%2017.7704%2017.9135%2017.8079C18.3097%2018.5702%2018.7554%2019.295%2019.2383%2019.9823C19.2754%2019.9948%2019.3125%2020.0073%2019.3497%2019.9948C21.4793%2019.3325%2023.6212%2018.3328%2025.8499%2016.6832C25.8746%2016.6707%2025.887%2016.6457%2025.887%2016.6207C26.4318%2010.9597%2024.9832%206.04847%2022.0488%201.68712C22.0364%201.67462%2022.024%201.66212%2021.9993%201.66212ZM8.68939%2013.634C7.41412%2013.634%206.34933%2012.4468%206.34933%2010.9847C6.34933%209.52256%207.38936%208.33538%208.68939%208.33538C10.0018%208.33538%2011.0418%209.53506%2011.0295%2010.9847C11.0295%2012.4468%209.98943%2013.634%208.68939%2013.634ZM17.3192%2013.634C16.0439%2013.634%2014.9791%2012.4468%2014.9791%2010.9847C14.9791%209.52256%2016.0191%208.33538%2017.3192%208.33538C18.6316%208.33538%2019.6716%209.53506%2019.6592%2010.9847C19.6592%2012.4468%2018.6316%2013.634%2017.3192%2013.634Z'%20fill='white'/%3e%3c/svg%3e"
-											alt="Image">
-									</span>
-								</a>
-								<a class="mnav__social-btn" href="#" aria-label="Telegram">
-									<span aria-hidden="true">
-										<img
-											src="data:image/svg+xml,%3csvg%20width='22'%20height='20'%20viewBox='0%200%2022%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M20.1251%200.17658C20.1251%200.17658%2022.1601%20-0.68913%2021.9899%201.41315C21.9338%202.27886%2021.4252%205.30913%2021.0292%208.58626L19.6726%2018.2948C19.6726%2018.2948%2019.5594%2019.7171%2018.5417%2019.9645C17.5245%2020.2114%2015.9981%2019.0988%2015.7153%2018.8514C15.489%2018.6656%2011.4756%2015.8828%2010.0624%2014.5228C9.6664%2014.1514%209.21383%2013.4097%2010.119%2012.544L16.0542%206.35998C16.7325%205.61827%2017.4108%203.88685%2014.5844%205.98913L6.66973%2011.8634C6.66973%2011.8634%205.76512%2012.4822%204.06957%2011.9257L0.394577%2010.6885C0.394577%2010.6885%20-0.96207%209.76111%201.35575%208.83369C7.00915%205.92741%2013.9637%202.95943%2020.1251%200.17658Z'%20fill='white'/%3e%3c/svg%3e"
-											alt="Image">
-									</span>
-								</a>
-							</div>
+					<div class="menu-overlay js-mnav-close" aria-hidden="true"></div>
+					<nav class="menu-right" aria-label="Мобильное меню">
+						<ul class="menu-list">
+							<li class="menu-item">
+								<a href="#mir" class="menu-link">МИР</a>
+								<span class="arrow">→</span>
+							</li>
+							<li class="menu-item">
+								<a href="#modifications" class="menu-link">МОДИФИКАЦИИ</a>
+								<span class="arrow">→</span>
+							</li>
+							<li class="menu-item">
+								<a href="#stages" class="menu-link">ЭТАПЫ ОТКРЫТИЯ</a>
+								<span class="arrow">→</span>
+							</li>
+							<li class="menu-item">
+								<a href="#features" class="menu-link">ОСОБЕННОСТИ</a>
+								<span class="arrow">→</span>
+							</li>
+							<li class="menu-item">
+								<a href="#rates" class="menu-link">РЕЙТЫ</a>
+								<span class="arrow">→</span>
+							</li>
+							<li class="menu-item">
+								<a href="#trailers" class="menu-link">ТРЕЙЛЕРЫ</a>
+								<span class="arrow">→</span>
+							</li>
+							<li class="menu-item">
+								<a href="#community" class="menu-link">СООБЩЕСТВО</a>
+								<span class="arrow">→</span>
+							</li>
+							<li class="menu-item">
+								<a href="#registration" class="menu-link">РЕГИСТРАЦИЯ</a>
+								<span class="arrow">→</span>
+							</li>
+						</ul>
+						<div class="footer-section">
+							<p class="footer-text">WOW CIRCLE</p>
+							<div class="divider"></div>
+							<p class="footer-text">DRAGONFLIGHT X2</p>
 						</div>
-					</aside>
+					</nav>
 				</div>
 			</div>
 		</header>
@@ -602,8 +579,8 @@
 							<h2 class="community__title line">ДИНАМИЧНОЕ СООБЩЕСТВО</h2>
 						</div>
 						<div class="community__scene" aria-hidden="true">
-							<model-viewer class="community__model" src="./files/models/iridikron/iridikron.gltf" alt="" loading="lazy" autoplay
-								animation-name="Stand (ID 0 variation 1)" environment-image="neutral" exposure="2"
+							<model-viewer class="community__model" src="./files/models/iridikron/iridikron.gltf" alt="" loading="lazy"
+								autoplay animation-name="Stand (ID 0 variation 1)" environment-image="neutral" exposure="2"
 								shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap=""
 								camera-orbit="46deg 88deg 1.8m" camera-target="0.3m 3.75m 0.5m"></model-viewer>
 							<div class="community__img img-model">

@@ -386,6 +386,9 @@ body {
     background-image: url("../assets/img/ui/tab/bg.webp");
   }}
 @media (max-width: 47.99875em) {
+  .btn {
+    font-size: 1rem;
+  }
   h2 {
     font-size: 1.25rem;
     font-weight: 800;
@@ -418,8 +421,8 @@ body {
     font-size: 0;
   }
   .logo img {
-    width: 6.3125rem;
-    height: 4.1875rem;
+    width: 8.125rem;
+    height: 5.4375rem;
   }
   .swiper-pagination-bullet {
     width: 0.625rem;

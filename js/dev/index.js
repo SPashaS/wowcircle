@@ -5269,34 +5269,64 @@ class Popup {
 }
 document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () => window.flsPopup = new Popup({})) : null;
 (() => {
-  const root = document.querySelector(".mnav");
-  const btnOpen = document.querySelector(".js-mnav-open");
-  if (!root || !btnOpen) return;
-  const btnClose = root.querySelectorAll(".js-mnav-close");
-  const links = root.querySelectorAll(".mnav__item");
-  let t = null;
-  const setExpanded = (v) => btnOpen.setAttribute("aria-expanded", String(v));
-  const open = () => {
-    clearTimeout(t);
-    root.hidden = false;
-    document.body.classList.add("is-mnav-open");
-    setExpanded(true);
+  const init = () => {
+    const openBtn = document.querySelector(".js-mnav-open");
+    const shell = document.getElementById("mnav");
+    const menu = shell == null ? void 0 : shell.querySelector(".menu-right");
+    const overlay = shell == null ? void 0 : shell.querySelector(".menu-overlay");
+    if (!openBtn || !shell || !menu || !overlay) {
+      console.log("[mnav] missing:", { openBtn, shell, menu, overlay });
+      return;
+    }
+    const OPEN_CLASS = "is-mnav-open";
+    const lockScroll = (locked) => {
+      document.body.style.overflow = locked ? "hidden" : "";
+    };
+    const setA11y = (isOpen) => {
+      openBtn.setAttribute("aria-expanded", String(isOpen));
+      shell.toggleAttribute("hidden", !isOpen);
+      shell.setAttribute("aria-hidden", String(!isOpen));
+    };
+    const openMenu = () => {
+      document.body.classList.add(OPEN_CLASS);
+      lockScroll(true);
+      setA11y(true);
+    };
+    const closeMenu = () => {
+      document.body.classList.remove(OPEN_CLASS);
+      lockScroll(false);
+      setA11y(false);
+    };
+    const toggleMenu = () => {
+      const isOpen = document.body.classList.contains(OPEN_CLASS);
+      isOpen ? closeMenu() : openMenu();
+    };
+    openBtn.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+    menu.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = a.getAttribute("href").slice(1);
+        const target = document.getElementById(id);
+        closeMenu();
+        if (target) {
+          requestAnimationFrame(() => {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+      });
+    });
+    closeMenu();
+    console.log("[mnav] inited ok");
   };
-  const close = () => {
-    clearTimeout(t);
-    document.body.classList.remove("is-mnav-open");
-    setExpanded(false);
-    t = setTimeout(() => {
-      if (!document.body.classList.contains("is-mnav-open")) root.hidden = true;
-    }, 180);
-  };
-  btnOpen.addEventListener("click", open);
-  btnClose.forEach((b) => b.addEventListener("click", close));
-  links.forEach((a) => a.addEventListener("click", close));
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && document.body.classList.contains("is-mnav-open"))
-      close();
-  });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
 })();
 (() => {
   const box = document.querySelector(".lang");

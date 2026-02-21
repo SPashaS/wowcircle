@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 	<meta charset="UTF-8">
@@ -12,13 +12,13 @@
 		crossorigin="anonymous">
 	<link rel="preload" href="./assets/fonts/EBGaramond-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 	<link rel="shortcut icon" href="./assets/img/favicon.ico">
-	<link rel="modulepreload" href="./files/model-viewer.min.js?v=1771636277681">
-	<script type="module" src="./files/model-viewer.min.js?v=1771636277681"></script>
+	<link rel="modulepreload" href="./files/model-viewer.min.js?v=1771710242133">
+	<script type="module" src="./files/model-viewer.min.js?v=1771710242133"></script>
 	<title>Home Page</title>
-	<script type="module" crossorigin="" src="./js/index.min.js?v=1771636277681"></script>
-	<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1771636277681">
-	<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1771636277681">
-	<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1771636277681">
+	<script type="module" crossorigin="" src="./js/index.min.js?v=1771710242133"></script>
+	<link rel="modulepreload" crossorigin="" href="./js/app.min.js?v=1771710242133">
+	<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1771710242133">
+	<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1771710242133">
 </head>
 
 <body>
@@ -64,6 +64,31 @@
 						</li>
 					</ul>
 				</nav>
+				<!--
+<button class="header__burger js-mnav-open" type="button" aria-label="Открыть меню" aria-controls="mnav"
+aria-expanded="false">
+<svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<g filter="url(#filter0_d_573_1587)">
+<path d="M4.75 4.75H8.5M24.75 4.75H13.5M24.75 18.75H21M4.75 18.75H16M4.75 11.75H24.75" stroke="white"
+stroke-width="1.5" stroke-linecap="round" shape-rendering="crispEdges" />
+</g>
+<defs>
+<filter id="filter0_d_573_1587" x="0" y="0" width="29.5" height="23.5" filterUnits="userSpaceOnUse"
+color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix" />
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+result="hardAlpha" />
+<feOffset />
+<feGaussianBlur stdDeviation="2" />
+<feComposite in2="hardAlpha" operator="out" />
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0.0878804 0 0 0 0 0.629808 0 0 0 0.7 0" />
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_573_1587" />
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_573_1587" result="shape" />
+</filter>
+</defs>
+</svg>
+</button>
+-->
 				<button class="header__burger js-mnav-open" type="button" aria-label="Открыть меню" aria-controls="mnav"
 					aria-expanded="false">
 					<span class="header__burger-lines" aria-hidden="true">
@@ -129,7 +154,7 @@
 				</div>
 				<section class="hero">
 					<div class="hero__scene" aria-hidden="true">
-						<model-viewer id="yseraModel" class="hero__model" src="./files/models/yseradragon/yseradragon.gltf" autoplay
+						<model-viewer id="yseraModel" class="hero__model" src="" autoplay
 							animation-name="FlyStand (ID 229 variation 0)" environment-image="neutral" exposure="1"
 							shadow-intensity="0.6" tone-mapping="neutral" interaction-prompt="none" disable-zoom="" disable-pan=""
 							disable-tap="" camera-orbit="-246deg 112deg 1.5m" camera-target="25m -4.85m -16m"></model-viewer>
@@ -579,8 +604,8 @@
 							<h2 class="community__title line">ДИНАМИЧНОЕ СООБЩЕСТВО</h2>
 						</div>
 						<div class="community__scene" aria-hidden="true">
-							<model-viewer class="community__model" src="./files/models/iridikron/iridikron.gltf" alt="" loading="lazy"
-								autoplay animation-name="Stand (ID 0 variation 1)" environment-image="neutral" exposure="2"
+							<model-viewer class="community__model" src="" alt="" loading="lazy" autoplay
+								animation-name="Stand (ID 0 variation 1)" environment-image="neutral" exposure="2"
 								shadow-intensity="0.6" interaction-prompt="none" disable-zoom="" disable-pan="" disable-tap=""
 								camera-orbit="46deg 88deg 1.8m" camera-target="0.3m 3.75m 0.5m"></model-viewer>
 							<div class="community__img img-model">

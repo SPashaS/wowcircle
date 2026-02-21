@@ -1224,6 +1224,7 @@ body::after {
     height: 41.25rem;
   }
   .scene--c .scene__bg {
+    top: 6.375rem;
     height: 51.25rem;
   }
   .hero__title {
@@ -1699,6 +1700,9 @@ body::after {
     background: linear-gradient(90deg, transparent, #c9e5f3, transparent);
     box-shadow: 0 0 0.5rem rgba(201, 229, 243, 0.5);
   }
+  .footer {
+    padding: 3.4375rem 0 2.1875rem;
+  }
   .footer__list {
     flex-direction: column;
     align-items: center;
@@ -1801,6 +1805,9 @@ body::after {
     width: 4.375rem;
     height: 2.5rem;
   }
+  .stages {
+    padding: 2.5rem 0 0;
+  }
   .stages__container {
     margin: 0 -0.9375rem;
   }
@@ -1880,6 +1887,9 @@ body::after {
   }
   .df-card__body {
     width: auto;
+  }
+  .raids {
+    padding: 2.8125rem 0 4.0625rem;
   }
   .raids__container {
     margin: 0 -0.9375rem;
@@ -1991,7 +2001,7 @@ body::after {
     z-index: 1;
   }
   .community {
-    padding: 8.125rem 0 5.625rem;
+    padding: 8.125rem 0 2.8125rem;
   }
   .community__model {
     display: none;
@@ -2017,6 +2027,9 @@ body::after {
   .community__text {
     font-size: 1rem;
     text-align: center;
+  }
+  .cta {
+    padding: 2.5rem 0;
   }
   .cta__title {
     padding-bottom: 1.5625rem;
